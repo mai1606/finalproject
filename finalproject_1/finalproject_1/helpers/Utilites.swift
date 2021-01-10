@@ -1,0 +1,62 @@
+//
+//  utilites.swift
+//  finalproject_1
+//
+//  Created by _maiWeb#15 on 10/20/20.
+//  Copyright © 2020 ICTSUIM. All rights reserved.
+//
+
+import UIKit
+
+class utilities{
+
+    static func isPasswordValid(_ password : String) -> Bool{
+       let passRegEx = "(?=[^a-z]*[a-z])[^0-9]*[0-9].*"
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", passRegEx)
+        return passwordTest.evaluate(with: password)
+    }
+    
+    static func setColor(check: Bool){
+        if check == true {
+            UserDefaults.standard.set(UIColor.mainColorFemale, forKey: "mainColorApp")
+        } else {
+            UserDefaults.standard.set(UIColor.mainColorMale, forKey: "mainColorApp")
+        }
+        
+    }
+   
+
+}
+
+extension DateFormatter {
+    static func buddhistFormat() -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .buddhist)
+        formatter.locale = Locale(identifier: "th_TH")
+        return formatter
+    }
+}
+
+extension Date {
+    static func currentDateStr() -> String {
+        let formatter = DateFormatter.buddhistFormat()
+        formatter.dateFormat = "dd/MM/yyyy"
+        let date = Date()
+        return formatter.string(from: date)
+    }
+    
+    static func currentDate() -> Date {
+        let formatter = DateFormatter.buddhistFormat()
+        formatter.dateFormat = "dd/MM/yyyy"
+        let date = Date()
+        return formatter.date(from: formatter.string(from: date))!
+    }
+    
+    static func currentDateFromString(strDate: String) -> Date {
+        let formatter = DateFormatter.buddhistFormat()
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter.date(from: strDate)!
+    }
+}
+
+
