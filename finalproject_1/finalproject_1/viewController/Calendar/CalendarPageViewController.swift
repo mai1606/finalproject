@@ -22,6 +22,7 @@ class CalendarPageViewController: UIViewController {
     
     @IBOutlet weak var calendarCollectionview: UICollectionView!
     let dateFormatter = DateFormatter()
+    let gregorian: Calendar = Calendar(identifier: .buddhist)
     
     var emotions: [Detail] = DetailPageConfigurator.getAll()
     var emotionsSelected: [Detail] = []
@@ -32,6 +33,7 @@ class CalendarPageViewController: UIViewController {
     var arrayDate: [String] = []
     var isPeriod: Bool = true
     var selectedDate: Date = Date()
+    var periods: [Period] = []
     
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
@@ -81,15 +83,58 @@ class CalendarPageViewController: UIViewController {
     }
     
     func setup() {
+        dateFormatter.dateFormat = "d MMM yyyy"
         calendar.delegate = self
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0;
         calendarCollectionview.register(UINib(nibName: "DetailCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "DetailCollectionViewCell")
         calendarCollectionview.delegate = self
         calendarCollectionview.dataSource = self
-        
+        calPeriod(firstDate: Date.currentDate(), isFromClick: true)
 //        firstStackView.isHidden = isPeriod
 //        secondStackView.isHidden = !isPeriod
 //        thirdStackView.isHidden = !isPeriod
+    }
+    
+    
+    func calPeriod(firstDate: Date = Date.currentDate(),isFromClick: Bool = false) {
+        var period: Period = Period()
+        period.firstDay = dateFormatter.string(from: firstDate)
+        period.periodDays = getPeriod(date: firstDate)
+        if let ovu = dateFormatter.string(for: gregorian.date(byAdding: .day, value: 14, to: firstDate)) {
+            period.ovulationDay = ovu
+        }
+        if let nextDay = gregorian.date(byAdding: .day, value: 30, to: firstDate) {
+            period.nextDays = getPeriod(date: nextDay)
+            period.fisrtPredictPeriodDay = period.nextDays.first
+        }
+        
+        if isFromClick {
+            
+        }
+        periods.append(period)
+        
+        if let nextpre = period.fisrtPredictPeriodDay, let nextDate = dateFormatter.date(from: nextpre) {
+            let month = String(nextpre.split(separator: " ")[1])
+            if month != "Dec" {
+                calPeriod(firstDate: nextDate)
+            } else {
+                calendar.reloadData()
+            }
+        }
+
+        
+        
+        
+    }
+    
+    func getPeriod(date: Date) -> [String] {
+        var dates: [String] = []
+        for i in 1...7 {
+            guard let date = gregorian.date(byAdding: .day, value: i, to: date) else { continue }
+            dates.append(dateFormatter.string(from: date))
+        }
+        return dates
+        
     }
     
     
@@ -102,11 +147,11 @@ class CalendarPageViewController: UIViewController {
 }
 
 
-extension CalendarPageViewController: FSCalendarDelegate {
+extension CalendarPageViewController: FSCalendarDelegate, FSCalendarDelegateAppearance, FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         self.selectedDate = date
-        dateFormatter.dateFormat = "d MMM yyyy"
+        
         dateFormatter.string(from: selectedDate)
         let docRef = db.collection("users").document(user!.uid).collection("date").document (dateFormatter.string(from: selectedDate))
         
@@ -153,6 +198,45 @@ extension CalendarPageViewController: FSCalendarDelegate {
       
         return 0
     }
+    
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
+        
+            return nil
+        }
+        
+        func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
+           
+            return appearance.selectionColor
+        }
+        
+        func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+
+            return nil
+        }
+        
+        func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {
+            if periods.first(where: {$0.firstDay == dateFormatter.string(from: date)}) != nil {
+                return .black
+            } else if periods.first(where: {$0.periodDays.contains(dateFormatter.string(from: date))}) != nil {
+                return .purple
+            } else if periods.first(where: {$0.ovulationDay == dateFormatter.string(from: date)}) != nil {
+                return .brown
+            } else if periods.first(where: {$0.nextDays.contains(dateFormatter.string(from: date))}) != nil {
+                return .blue
+            }
+            return appearance.borderDefaultColor
+        }
+        
+        func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderSelectionColorFor date: Date) -> UIColor? {
+
+            return appearance.borderSelectionColor
+        }
+        
+        func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderRadiusFor date: Date) -> CGFloat {
+
+            return 1.0
+        }
 }
 
 extension CalendarPageViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

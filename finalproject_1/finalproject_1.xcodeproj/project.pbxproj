@@ -19,6 +19,7 @@
 		2C062CAE253EE59A00BA3515 /* Utilites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C062CAD253EE59A00BA3515 /* Utilites.swift */; };
 		2C062CB4253EF74100BA3515 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C062CB3253EF74100BA3515 /* GoogleService-Info.plist */; };
 		2C062CB7253F0A4000BA3515 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C062CB6253F0A4000BA3515 /* Constants.swift */; };
+		2C25513D25AB326E00C11A69 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C25513C25AB326E00C11A69 /* Period.swift */; };
 		2C4E7A1425402FBE0009C87D /* InputDateByUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E7A1325402FBE0009C87D /* InputDateByUserViewController.swift */; };
 		2C4E7A1625403F2B0009C87D /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E7A1525403F2B0009C87D /* DatePickerViewController.swift */; };
 		2C55DB4725433189002437DF /* UserMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55DB4625433189002437DF /* UserMainViewController.swift */; };
@@ -67,6 +68,7 @@
 		2C062CAD253EE59A00BA3515 /* Utilites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilites.swift; sourceTree = "<group>"; };
 		2C062CB3253EF74100BA3515 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2C062CB6253F0A4000BA3515 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2C25513C25AB326E00C11A69 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		2C4E7A1325402FBE0009C87D /* InputDateByUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDateByUserViewController.swift; sourceTree = "<group>"; };
 		2C4E7A1525403F2B0009C87D /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		2C55DB4625433189002437DF /* UserMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMainViewController.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				2C68601F257675FA00142B63 /* Detail.swift */,
 				2C8A2503258B93B600046F18 /* Message.swift */,
 				2C8A2500258B937E00046F18 /* Chat.swift */,
+				2C25513C25AB326E00C11A69 /* Period.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				2C686020257675FA00142B63 /* Detail.swift in Sources */,
 				2C4E7A1425402FBE0009C87D /* InputDateByUserViewController.swift in Sources */,
 				2C062CAB253EBDEB00BA3515 /* HomeViewController.swift in Sources */,
+				2C25513D25AB326E00C11A69 /* Period.swift in Sources */,
 				2C8A2507258B950500046F18 /* ChatViewController.swift in Sources */,
 				2C674FBB2583AF3200F6E4ED /* StackedBar.swift in Sources */,
 				C62E5BE52587C46D00BC2135 /* GraphPageOneViewController.swift in Sources */,
