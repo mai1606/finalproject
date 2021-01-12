@@ -31,7 +31,7 @@ class utilities{
 extension DateFormatter {
     static func buddhistFormat() -> DateFormatter {
         let formatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .buddhist)
+        formatter.calendar = Calendar(identifier: .gregorian)
         formatter.locale = Locale(identifier: "th_TH")
         return formatter
     }
@@ -54,8 +54,8 @@ extension Date {
     
     static func currentDateFromString(strDate: String) -> Date {
         let formatter = DateFormatter.buddhistFormat()
-        formatter.dateFormat = "dd/MM/yyyy"
-        return formatter.date(from: strDate)!
+        formatter.dateFormat = "dd MMM YYYY"
+        return formatter.date(from: strDate) ?? Date()
     }
 }
 

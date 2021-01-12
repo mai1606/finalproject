@@ -14,7 +14,7 @@ import FirebaseAuth
 
 class CalendarPageViewController: UIViewController {
 
-
+    @IBOutlet weak var fourthStackView: UIStackView!
     @IBOutlet weak var thirdStackView: UIStackView!
     @IBOutlet weak var secondStackView: UIStackView!
     @IBOutlet weak var firstStackView: UIStackView!
@@ -35,9 +35,14 @@ class CalendarPageViewController: UIViewController {
     var selectedDate: Date = Date()
     var periods: [Period] = []
     
+    var periodsDayinYear : [String] = []
+    var ovulationDayinYear : [String] = []
+    var periodsNextMonth: String = ""
+    var firstperiods :String = ""
+    
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
-   // var dataArray:[String]
+    //var dayChoose = Date = Date()
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,11 +71,26 @@ class CalendarPageViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        calendarCollectionview.reloadData()
+//        calendarCollectionview.reloadData()
 //     db.collection("users").document(user!.uid).collection("date").document("\(dateFormatter.string(from: selectedDate))").updateData(["Detail\(emo)" : emo ])
         
     }
     
+    
+    @IBAction func ChooseDay(_ sender: Any) {
+        
+        periods = []
+        calPeriod(firstDate: selectedDate, isFromClick: true)
+       
+        
+        
+    }
+    func todate(){
+        let db1 = Firestore.firestore()
+        let dateFormatter1 = DateFormatter()
+        dateFormatter1.dateFormat = "yyyy"
+        db1.collection("users").document(user!.uid).collection("periods").document("\(dateFormatter1.string(from:selectedDate))").setData(["periods":periodsDayinYear,"ovulationDay":ovulationDayinYear,"periodsNextMonth":periodsNextMonth,"firstPeriods":firstperiods])
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detailPageSegue" {
             let detailPageViewController = segue.destination as? DetailPageViewController
@@ -89,10 +109,12 @@ class CalendarPageViewController: UIViewController {
         calendarCollectionview.register(UINib(nibName: "DetailCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "DetailCollectionViewCell")
         calendarCollectionview.delegate = self
         calendarCollectionview.dataSource = self
-        calPeriod(firstDate: Date.currentDate(), isFromClick: true)
-//        firstStackView.isHidden = isPeriod
-//        secondStackView.isHidden = !isPeriod
-//        thirdStackView.isHidden = !isPeriod
+        
+        secondStackView.isHidden = false
+        thirdStackView.isHidden = false
+        fourthStackView.isHidden = false
+        
+
     }
     
     
@@ -109,7 +131,13 @@ class CalendarPageViewController: UIViewController {
         }
         
         if isFromClick {
-            
+           // dateFormatter.dateFormat = "MMM yyyy"
+            firstperiods = dateFormatter.string(for: firstDate)!
+            periodsDayinYear.append(contentsOf: getPeriod(date: firstDate))
+            ovulationDayinYear.append((dateFormatter.string(for: gregorian.date(byAdding: .day, value: 14, to: firstDate)))!)
+            periodsNextMonth = dateFormatter.string(for: gregorian.date(byAdding: .day, value: 30, to: firstDate))!
+           
+            // todate()
         }
         periods.append(period)
         
@@ -122,14 +150,12 @@ class CalendarPageViewController: UIViewController {
             }
         }
 
-        
-        
-        
+        todate()
     }
     
     func getPeriod(date: Date) -> [String] {
         var dates: [String] = []
-        for i in 1...7 {
+        for i in 0...6 {
             guard let date = gregorian.date(byAdding: .day, value: i, to: date) else { continue }
             dates.append(dateFormatter.string(from: date))
         }
@@ -146,7 +172,7 @@ class CalendarPageViewController: UIViewController {
     
 }
 
-
+//ดึงข้อมูล อาการมาแสดง
 extension CalendarPageViewController: FSCalendarDelegate, FSCalendarDelegateAppearance, FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -166,28 +192,32 @@ extension CalendarPageViewController: FSCalendarDelegate, FSCalendarDelegateAppe
                     self.arrayDate = dataDescription
                     //print(self.arrayDate?.count)
                 }
+               
                 
-//                for a in arrayDate! {
-//                  //  print("Document data: \(a)")
-//
-//                }
                 calendarCollectionview.reloadData()
-               // print("Document data: \(dataDescription)")
+              
             } else {
-                print("Document does not exist")
+                print("ไม่มีข้อมูลมา ไม่พบข้อมูล")
                 self.arrayDate = []
-                //print(self.arrayDate?.count)
+                
+            
                 calendarCollectionview.reloadData()
             }
             
             if !arrayDate.isEmpty {
                 emotionsSelected = []
                 for descr in arrayDate {
+
                     let emo = emotions.filter({ $0.descr == descr })
                     emotionsSelected.append(contentsOf: emo)
                 }
+                
+               
             } else {
+
+                setup()
                 emotionsSelected = []
+               
             }
             calendarCollectionview.reloadData()
         }
@@ -207,23 +237,42 @@ extension CalendarPageViewController: FSCalendarDelegate, FSCalendarDelegateAppe
         
         func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
            
+           
+//            if periodsDayinYear == dateFormatter.string(from: date) {
+//                return UIColor(named: "Color_main1")
+//            }
+           
             return appearance.selectionColor
         }
         
         func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
-
+            for day in periodsDayinYear{
+                if day == dateFormatter.string(from: date) {
+                    return UIColor(named: "Color_main1")
+                   
+                }
+            }
             return nil
         }
         
         func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {
-            if periods.first(where: {$0.firstDay == dateFormatter.string(from: date)}) != nil {
-                return .black
-            } else if periods.first(where: {$0.periodDays.contains(dateFormatter.string(from: date))}) != nil {
-                return .purple
-            } else if periods.first(where: {$0.ovulationDay == dateFormatter.string(from: date)}) != nil {
+//            if periods.first(where: {$0.firstDay == dateFormatter.string(from: date)}) != nil {
+//                return .black
+//            } else if periods.first(where: {$0.periodDays.contains(dateFormatter.string(from: date))}) != nil {
+//                return .purple}
+            
+            if periods.first(where: {$0.ovulationDay == dateFormatter.string(from: date)}) != nil
+            {
                 return .brown
-            } else if periods.first(where: {$0.nextDays.contains(dateFormatter.string(from: date))}) != nil {
-                return .blue
+            } else if periods.first(where: {$0.nextDays.contains(dateFormatter.string(from: date))}) != nil
+            {
+                return UIColor(named: "Color_main1")
+            }
+            for oday in ovulationDayinYear{
+                if oday == dateFormatter.string(from: date) {
+                    return UIColor(named: "Color_main3")
+                   
+                }
             }
             return appearance.borderDefaultColor
         }
@@ -243,8 +292,18 @@ extension CalendarPageViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //print("------->",self.arrayDate?.count)
        // return details.count
+
+        if emotionsSelected.count == 0 {
+           // thirdStackView.isHidden = true
+           // fourthStackView.isHidden = true
+            return emotionsSelected.count
+        }else{
+          //  thirdStackView.isHidden = false
+           // fourthStackView.isHidden = false
+            return emotionsSelected.count
+        }
       
-        return emotionsSelected.count
+        //return emotionsSelected.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -252,9 +311,8 @@ extension CalendarPageViewController: UICollectionViewDelegate, UICollectionView
         var detail: Detail?
         detail = emotionsSelected[indexPath.row]
         cell.setup(detail: detail)
-        
        
-    
+      
 //            for anarray in arrayDate!{
 //                if let descr = detail.descr {
 //
