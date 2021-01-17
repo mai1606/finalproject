@@ -43,21 +43,14 @@ class CalendarPageViewController: UIViewController {
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
     //var dayChoose = Date = Date()
-   
+    let dateFormat2 = DateFormatter()
+    var toDay = Date.currentDate()
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let docRef1 = db.collection("users").document(user!.uid).collection("date").document()
-//        docRef1.getDocument{ (document, error) in
-//            if let document = document, document.exists {
-//                let  dataDescription = document.data()
-//
-//                print("----->",dataDescription )
-//            }else {
-//                print("----xxxxx-")
-//            }
-//        }
+       
         
         setup()
+        cDate()
         // Do any additional setup after loading the view.
        
        // arrayDate?.append(("a"))
@@ -65,7 +58,7 @@ class CalendarPageViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
+        cDate()
         calendarCollectionview.reloadData()
     }
     
@@ -83,6 +76,23 @@ class CalendarPageViewController: UIViewController {
         calPeriod(firstDate: selectedDate, isFromClick: true)
        
         
+        
+    }
+    func cDate() {
+        dateFormat2.dateFormat = "YYYY"
+//        dateFormat3.locale = Locale(identifier: "th_TH")
+        let docRef = db.collection("users").document(user!.uid).collection("periods").document (dateFormat2.string(from: toDay))
+        
+        docRef.getDocument{ (document, error) in
+            if let document = document, document.exists {
+                let firstPeriod = document.data()!["firstPeriods"] as! String
+                let Day =  self.dateFormatter.date(from: firstPeriod)
+                self.calPeriod(firstDate: Day!, isFromClick: true)
+               
+            }else {
+               print("ไม่มีข้อมูล")
+            }
+        }
         
     }
     func todate(){
@@ -137,7 +147,6 @@ class CalendarPageViewController: UIViewController {
             ovulationDayinYear.append((dateFormatter.string(for: gregorian.date(byAdding: .day, value: 14, to: firstDate)))!)
             periodsNextMonth = dateFormatter.string(for: gregorian.date(byAdding: .day, value: 30, to: firstDate))!
            
-            // todate()
         }
         periods.append(period)
         
@@ -149,7 +158,6 @@ class CalendarPageViewController: UIViewController {
                 calendar.reloadData()
             }
         }
-
         todate()
     }
     
