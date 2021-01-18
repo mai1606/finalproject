@@ -18,6 +18,8 @@ class CalendarPageViewController: UIViewController {
     @IBOutlet weak var thirdStackView: UIStackView!
     @IBOutlet weak var secondStackView: UIStackView!
     @IBOutlet weak var firstStackView: UIStackView!
+    @IBOutlet weak var sixStackView: UIStackView!
+    
     @IBOutlet weak var calendar: FSCalendar!
     
     @IBOutlet weak var calendarCollectionview: UICollectionView!
@@ -302,11 +304,11 @@ extension CalendarPageViewController: UICollectionViewDelegate, UICollectionView
        // return details.count
 
         if emotionsSelected.count == 0 {
-           // thirdStackView.isHidden = true
+            sixStackView.isHidden = true
            // fourthStackView.isHidden = true
             return emotionsSelected.count
         }else{
-          //  thirdStackView.isHidden = false
+            sixStackView.isHidden = false
            // fourthStackView.isHidden = false
             return emotionsSelected.count
         }
@@ -318,7 +320,7 @@ extension CalendarPageViewController: UICollectionViewDelegate, UICollectionView
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailCollectionViewCell", for: indexPath) as? DetailCollectionViewCell else { return UICollectionViewCell() }
         var detail: Detail?
         detail = emotionsSelected[indexPath.row]
-        cell.setup(detail: detail)
+        cell.setupImage(detail: detail)
        
       
 //            for anarray in arrayDate!{

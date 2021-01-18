@@ -11,11 +11,24 @@ import UIKit
 class GraphPageThreeViewController: UIViewController {
 
     @IBOutlet weak var backgroundView: UIView!
+    
+    let test: [String] = ["test"]
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundView.layer.cornerRadius = 20
+        var disease: [Disease] = DiseaseConfigurator.getDisease()
+        
+        for tt in test {
+            for (index, dd) in disease.enumerated() {
+                if dd.symptom.contains(tt) || dd.emotion.contains(tt) {
+                    disease[index].count = disease[index].count + 1
+                }
+            }
+        }
         // Do any additional setup after loading the view.
     }
+    
+    
     
 
     /*

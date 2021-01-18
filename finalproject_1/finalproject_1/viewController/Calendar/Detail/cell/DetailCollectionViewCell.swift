@@ -22,14 +22,9 @@ class DetailCollectionViewCell: UICollectionViewCell {
         descrLabel.text = detail?.descr
         detailImage.image = detail?.image
     }
-    func setupImage(detail: Detail?,X: String) {
-        if (detail?.descr == X){
-        detailImage.image = detail?.image
-        descrLabel.text = detail?.descr
-        }else{
-            detailImage.image = nil
-            descrLabel.text = nil
-        }
+    func setupImage(detail: Detail?) {
+        detailImage.image = detail?.selectedImage
+        descrLabel.text = " "
     }
     
     func setupSelected(detail: Detail) {

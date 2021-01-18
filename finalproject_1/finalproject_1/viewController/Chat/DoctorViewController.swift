@@ -19,21 +19,29 @@ class DoctorViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     func setUp()  {
-        ////chatTable.register(UITableVieell.self, forCellReuseIdentifier: "cell")
+//        chatTable.register(DoctorTableViewCell.self, forCellReuseIdentifier: "DoctorTableViewCell")
         chatTable.dataSource = self
         chatTable.delegate = self
+        chatTable.register(UINib(nibName: "DoctorTableViewCell", bundle: nil), forCellReuseIdentifier: "DoctorTableViewCell")
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell",for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DoctorTableViewCell",for: indexPath) as? DoctorTableViewCell else { return UITableViewCell() }
+        
         if indexPath.row == 0 {
-            cell.textLabel?.text = "test20"
-            
+//            cell.textLabel?.text = "test20"
+            cell.configurate(name: "test20")
         } else {
-            cell.textLabel?.text = "test15"
+//            cell.textLabel?.text = "test15"
+            cell.configurate(name: "test15")
+        }
+        
+        cell.didClickDoctorButton = { [weak self] in
+            guard let strongSelf = self else { return }
+            print("test")
         }
         
         return cell

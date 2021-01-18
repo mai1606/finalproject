@@ -23,6 +23,8 @@
 		2C4E7A1425402FBE0009C87D /* InputDateByUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E7A1325402FBE0009C87D /* InputDateByUserViewController.swift */; };
 		2C4E7A1625403F2B0009C87D /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E7A1525403F2B0009C87D /* DatePickerViewController.swift */; };
 		2C55DB4725433189002437DF /* UserMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55DB4625433189002437DF /* UserMainViewController.swift */; };
+		2C630B7225B45C5B006986F2 /* DoctorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C630B7025B45C5B006986F2 /* DoctorTableViewCell.swift */; };
+		2C630B7325B45C5B006986F2 /* DoctorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C630B7125B45C5B006986F2 /* DoctorTableViewCell.xib */; };
 		2C674FB72583AD2E00F6E4ED /* GraphPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C674FB62583AD2E00F6E4ED /* GraphPageViewController.swift */; };
 		2C674FBB2583AF3200F6E4ED /* StackedBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C674FBA2583AF3200F6E4ED /* StackedBar.swift */; };
 		2C674FBF2583B1F000F6E4ED /* StackedBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C674FBE2583B1F000F6E4ED /* StackedBar.xib */; };
@@ -42,6 +44,8 @@
 		2C8A2501258B937E00046F18 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A2500258B937E00046F18 /* Chat.swift */; };
 		2C8A2504258B93B600046F18 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A2503258B93B600046F18 /* Message.swift */; };
 		2C8A2507258B950500046F18 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A2506258B950500046F18 /* ChatViewController.swift */; };
+		2CBFD1DA25B46C48005013F6 /* Disease.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFD1D925B46C48005013F6 /* Disease.swift */; };
+		2CBFD1DD25B46CE0005013F6 /* DiseaseConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFD1DC25B46CDF005013F6 /* DiseaseConfigurator.swift */; };
 		BE4BB79B39BCDA73EDAD2BC1 /* Pods_finalproject_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E27F8AED665498425F9FC /* Pods_finalproject_1.framework */; };
 		C62E5BE52587C46D00BC2135 /* GraphPageOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62E5BE42587C46D00BC2135 /* GraphPageOneViewController.swift */; };
 		C62E5BE92587C47D00BC2135 /* GraphPageOneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C62E5BE82587C47D00BC2135 /* GraphPageOneViewController.xib */; };
@@ -72,6 +76,8 @@
 		2C4E7A1325402FBE0009C87D /* InputDateByUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDateByUserViewController.swift; sourceTree = "<group>"; };
 		2C4E7A1525403F2B0009C87D /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		2C55DB4625433189002437DF /* UserMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMainViewController.swift; sourceTree = "<group>"; };
+		2C630B7025B45C5B006986F2 /* DoctorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorTableViewCell.swift; sourceTree = "<group>"; };
+		2C630B7125B45C5B006986F2 /* DoctorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DoctorTableViewCell.xib; sourceTree = "<group>"; };
 		2C674FB62583AD2E00F6E4ED /* GraphPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphPageViewController.swift; sourceTree = "<group>"; };
 		2C674FBA2583AF3200F6E4ED /* StackedBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedBar.swift; sourceTree = "<group>"; };
 		2C674FBE2583B1F000F6E4ED /* StackedBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StackedBar.xib; sourceTree = "<group>"; };
@@ -91,6 +97,8 @@
 		2C8A2500258B937E00046F18 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		2C8A2503258B93B600046F18 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		2C8A2506258B950500046F18 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		2CBFD1D925B46C48005013F6 /* Disease.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disease.swift; sourceTree = "<group>"; };
+		2CBFD1DC25B46CDF005013F6 /* DiseaseConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiseaseConfigurator.swift; sourceTree = "<group>"; };
 		3D891BE0D2FA8689CC03E0D9 /* Pods-finalproject_1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-finalproject_1.debug.xcconfig"; path = "Target Support Files/Pods-finalproject_1/Pods-finalproject_1.debug.xcconfig"; sourceTree = "<group>"; };
 		C62E5BE42587C46D00BC2135 /* GraphPageOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphPageOneViewController.swift; sourceTree = "<group>"; };
 		C62E5BE82587C47D00BC2135 /* GraphPageOneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GraphPageOneViewController.xib; sourceTree = "<group>"; };
@@ -172,6 +180,15 @@
 			path = helpers;
 			sourceTree = "<group>";
 		};
+		2C630B6F25B45C38006986F2 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				2C630B7025B45C5B006986F2 /* DoctorTableViewCell.swift */,
+				2C630B7125B45C5B006986F2 /* DoctorTableViewCell.xib */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 		2C674FB325824F3500F6E4ED /* Graph */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +261,7 @@
 				2C8A2503258B93B600046F18 /* Message.swift */,
 				2C8A2500258B937E00046F18 /* Chat.swift */,
 				2C25513C25AB326E00C11A69 /* Period.swift */,
+				2CBFD1D925B46C48005013F6 /* Disease.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -251,6 +269,7 @@
 		2C8A24F4258B5B0800046F18 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				2C630B6F25B45C38006986F2 /* cell */,
 				2C8A24F5258B5B3300046F18 /* chatDoctorStoryboard.storyboard */,
 				2C8A24F8258B5DEE00046F18 /* DoctorViewController.swift */,
 				2C8A24FB258B7B5B00046F18 /* MessageUserViewController.swift */,
@@ -320,6 +339,7 @@
 			children = (
 				C62E5BFE2587D66800BC2135 /* GraphPageThreeViewController.swift */,
 				C62E5C012587D67300BC2135 /* GraphPageThreeViewController.xib */,
+				2CBFD1DC25B46CDF005013F6 /* DiseaseConfigurator.swift */,
 			);
 			path = GraphPageThree;
 			sourceTree = "<group>";
@@ -397,6 +417,7 @@
 				2C6860042576471000142B63 /* Kanit-Bold.ttf in Resources */,
 				2C062C9C253EB26200BA3515 /* Assets.xcassets in Resources */,
 				2C6860062576471000142B63 /* Kanit-Medium.ttf in Resources */,
+				2C630B7325B45C5B006986F2 /* DoctorTableViewCell.xib in Resources */,
 				2C062C9A253EB25D00BA3515 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,9 +486,11 @@
 				2C062C95253EB25D00BA3515 /* SceneDelegate.swift in Sources */,
 				2C68601A25766EAB00142B63 /* DetailCollectionViewCell.swift in Sources */,
 				2C8A2501258B937E00046F18 /* Chat.swift in Sources */,
+				2CBFD1DA25B46C48005013F6 /* Disease.swift in Sources */,
 				2C4E7A1625403F2B0009C87D /* DatePickerViewController.swift in Sources */,
 				2C55DB4725433189002437DF /* UserMainViewController.swift in Sources */,
 				2C68601425766BBB00142B63 /* CalendarPageViewController.swift in Sources */,
+				2C630B7225B45C5B006986F2 /* DoctorTableViewCell.swift in Sources */,
 				2C8A24FC258B7B5B00046F18 /* MessageUserViewController.swift in Sources */,
 				2C686020257675FA00142B63 /* Detail.swift in Sources */,
 				2C4E7A1425402FBE0009C87D /* InputDateByUserViewController.swift in Sources */,
@@ -475,6 +498,7 @@
 				2C25513D25AB326E00C11A69 /* Period.swift in Sources */,
 				2C8A2507258B950500046F18 /* ChatViewController.swift in Sources */,
 				2C674FBB2583AF3200F6E4ED /* StackedBar.swift in Sources */,
+				2CBFD1DD25B46CE0005013F6 /* DiseaseConfigurator.swift in Sources */,
 				C62E5BE52587C46D00BC2135 /* GraphPageOneViewController.swift in Sources */,
 				2C062CB7253F0A4000BA3515 /* Constants.swift in Sources */,
 			);
