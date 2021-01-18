@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,6 +17,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GraphPageTwoViewController" customModule="finalproject_1" customModuleProvider="target">
             <connections>
                 <outlet property="backgroundView" destination="tSr-SR-dyH" id="COr-Cm-Lei"/>
+                <outlet property="dayLabal" destination="yK1-2l-bTt" id="nww-US-hdA"/>
+                <outlet property="noSexLabel" destination="su0-eu-ZfP" id="6zL-be-P8Q"/>
+                <outlet property="noSexProgressView" destination="vnI-4L-p5I" id="x5S-gC-1lj"/>
+                <outlet property="noSexView" destination="JK7-da-iYT" id="2BN-Ex-S8X"/>
+                <outlet property="protectLabel" destination="ZqT-aR-RN0" id="zwD-XF-rpX"/>
+                <outlet property="protectProgressView" destination="Wlc-vQ-1Ef" id="Di5-d9-Tg0"/>
+                <outlet property="sexLabel" destination="Vwt-pV-DF4" id="cVy-Qm-FNj"/>
+                <outlet property="sexProgressView" destination="guM-SS-uoG" id="95k-9P-4wu"/>
                 <outlet property="view" destination="DiW-VN-2YL" id="bgn-eM-pBK"/>
             </connections>
         </placeholder>
@@ -66,8 +75,8 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JK7-da-iYT">
                                                     <rect key="frame" x="0.0" y="15.5" width="274" height="20"/>
                                                     <subviews>
-                                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="vnI-4L-p5I">
-                                                            <rect key="frame" x="0.0" y="0.0" width="274" height="20"/>
+                                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vnI-4L-p5I">
+                                                            <rect key="frame" x="0.0" y="0.0" width="274" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="vDi-Iy-fcA"/>
                                                             </constraints>
@@ -79,7 +88,8 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="collectionViewBackground"/>
+                                                    <color key="tintColor" name="Color_main2"/>
                                                     <constraints>
                                                         <constraint firstItem="vnI-4L-p5I" firstAttribute="leading" secondItem="JK7-da-iYT" secondAttribute="leading" id="0ic-02-0fv"/>
                                                         <constraint firstItem="su0-eu-ZfP" firstAttribute="top" secondItem="JK7-da-iYT" secondAttribute="top" id="CJR-as-nbU"/>
@@ -90,6 +100,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
+                                            <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wMg-0v-dC8">
                                             <rect key="frame" x="364" y="6.5" width="10" height="50"/>
@@ -129,8 +140,10 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tAk-6Q-BxT">
                                                     <rect key="frame" x="0.0" y="15.5" width="274" height="20"/>
                                                     <subviews>
-                                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.10000000149011612" translatesAutoresizingMaskIntoConstraints="NO" id="guM-SS-uoG">
-                                                            <rect key="frame" x="0.0" y="0.0" width="274" height="20"/>
+                                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.10000000149011612" translatesAutoresizingMaskIntoConstraints="NO" id="guM-SS-uoG">
+                                                            <rect key="frame" x="0.0" y="0.0" width="274" height="21"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" name="Color_main2"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="rKj-Dd-5QG"/>
                                                             </constraints>
@@ -143,6 +156,7 @@
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="tintColor" name="collectionViewBackground"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="guM-SS-uoG" secondAttribute="trailing" id="7uK-S3-b57"/>
                                                         <constraint firstItem="guM-SS-uoG" firstAttribute="leading" secondItem="tAk-6Q-BxT" secondAttribute="leading" id="KPZ-GM-Jos"/>
@@ -153,6 +167,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
+                                            <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rLx-a2-nPK">
                                             <rect key="frame" x="364" y="6.5" width="10" height="50"/>
@@ -192,8 +207,9 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hK5-UK-5lz">
                                                     <rect key="frame" x="0.0" y="15.5" width="274" height="20"/>
                                                     <subviews>
-                                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.10000000149011612" translatesAutoresizingMaskIntoConstraints="NO" id="Wlc-vQ-1Ef">
-                                                            <rect key="frame" x="0.0" y="0.0" width="274" height="20"/>
+                                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="Wlc-vQ-1Ef">
+                                                            <rect key="frame" x="0.0" y="0.0" width="274" height="21"/>
+                                                            <color key="tintColor" name="Color_main2"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="X2c-8v-cZp"/>
                                                             </constraints>
@@ -229,7 +245,7 @@
                             </subviews>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                    <color key="backgroundColor" name="collectionViewBackground"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="e5d-hP-bE0" secondAttribute="bottom" id="KFS-Fq-WZw"/>
                         <constraint firstAttribute="height" constant="250" id="RFb-fu-NaD"/>
@@ -273,11 +289,14 @@
         <image name="sex1" width="496" height="489"/>
         <image name="sex2" width="496" height="489"/>
         <image name="sex3" width="496" height="489"/>
+        <namedColor name="Color_main2">
+            <color red="0.51372549019607838" green="0.78823529411764703" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="collectionViewBackground">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

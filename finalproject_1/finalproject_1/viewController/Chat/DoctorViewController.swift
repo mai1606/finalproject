@@ -61,7 +61,6 @@ class DoctorViewController: UIViewController,UITableViewDelegate,UITableViewData
         } else {
             vc.user2UID = "kCmCGsyXFnMgacdyuR6wk0oiveJ3"
             vc.user2Name = "test15"
-            
         }
         
         

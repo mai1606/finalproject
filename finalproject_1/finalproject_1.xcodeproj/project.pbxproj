@@ -25,12 +25,12 @@
 		2C55DB4725433189002437DF /* UserMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55DB4625433189002437DF /* UserMainViewController.swift */; };
 		2C630B7225B45C5B006986F2 /* DoctorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C630B7025B45C5B006986F2 /* DoctorTableViewCell.swift */; };
 		2C630B7325B45C5B006986F2 /* DoctorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C630B7125B45C5B006986F2 /* DoctorTableViewCell.xib */; };
+		2C66C46225B592BD0003840E /* Kanit-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C6860032576471000142B63 /* Kanit-Medium.ttf */; };
+		2C66C46425B592C30003840E /* Kanit-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C6860012576471000142B63 /* Kanit-Bold.ttf */; };
 		2C674FB72583AD2E00F6E4ED /* GraphPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C674FB62583AD2E00F6E4ED /* GraphPageViewController.swift */; };
 		2C674FBB2583AF3200F6E4ED /* StackedBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C674FBA2583AF3200F6E4ED /* StackedBar.swift */; };
 		2C674FBF2583B1F000F6E4ED /* StackedBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C674FBE2583B1F000F6E4ED /* StackedBar.xib */; };
-		2C6860042576471000142B63 /* Kanit-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C6860012576471000142B63 /* Kanit-Bold.ttf */; };
 		2C6860052576471000142B63 /* Kanit-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C6860022576471000142B63 /* Kanit-Light.ttf */; };
-		2C6860062576471000142B63 /* Kanit-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C6860032576471000142B63 /* Kanit-Medium.ttf */; };
 		2C68600C2576688600142B63 /* DetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C68600B2576688600142B63 /* DetailPageViewController.swift */; };
 		2C686010257668B300142B63 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C68600F257668B300142B63 /* Detail.storyboard */; };
 		2C68601425766BBB00142B63 /* CalendarPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C68601325766BBB00142B63 /* CalendarPageViewController.swift */; };
@@ -409,14 +409,14 @@
 				2C8A24F6258B5B3300046F18 /* chatDoctorStoryboard.storyboard in Resources */,
 				2C674FBF2583B1F000F6E4ED /* StackedBar.xib in Resources */,
 				C62E5BF22587D10D00BC2135 /* GraphPageTwoViewController.xib in Resources */,
+				2C66C46225B592BD0003840E /* Kanit-Medium.ttf in Resources */,
 				C62E5C022587D67300BC2135 /* GraphPageThreeViewController.xib in Resources */,
 				2C6860052576471000142B63 /* Kanit-Light.ttf in Resources */,
 				2C062CB4253EF74100BA3515 /* GoogleService-Info.plist in Resources */,
 				2C68601B25766EAB00142B63 /* DetailCollectionViewCell.xib in Resources */,
 				2C686010257668B300142B63 /* Detail.storyboard in Resources */,
-				2C6860042576471000142B63 /* Kanit-Bold.ttf in Resources */,
 				2C062C9C253EB26200BA3515 /* Assets.xcassets in Resources */,
-				2C6860062576471000142B63 /* Kanit-Medium.ttf in Resources */,
+				2C66C46425B592C30003840E /* Kanit-Bold.ttf in Resources */,
 				2C630B7325B45C5B006986F2 /* DoctorTableViewCell.xib in Resources */,
 				2C062C9A253EB25D00BA3515 /* Main.storyboard in Resources */,
 			);
