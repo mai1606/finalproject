@@ -44,6 +44,7 @@
 		2C8A2501258B937E00046F18 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A2500258B937E00046F18 /* Chat.swift */; };
 		2C8A2504258B93B600046F18 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A2503258B93B600046F18 /* Message.swift */; };
 		2C8A2507258B950500046F18 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A2506258B950500046F18 /* ChatViewController.swift */; };
+		2C8DA99025B6F2370066B651 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DA98F25B6F2370066B651 /* Emotion.swift */; };
 		2CBFD1DA25B46C48005013F6 /* Disease.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFD1D925B46C48005013F6 /* Disease.swift */; };
 		2CBFD1DD25B46CE0005013F6 /* DiseaseConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFD1DC25B46CDF005013F6 /* DiseaseConfigurator.swift */; };
 		BE4BB79B39BCDA73EDAD2BC1 /* Pods_finalproject_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E27F8AED665498425F9FC /* Pods_finalproject_1.framework */; };
@@ -97,6 +98,7 @@
 		2C8A2500258B937E00046F18 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		2C8A2503258B93B600046F18 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		2C8A2506258B950500046F18 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		2C8DA98F25B6F2370066B651 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
 		2CBFD1D925B46C48005013F6 /* Disease.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disease.swift; sourceTree = "<group>"; };
 		2CBFD1DC25B46CDF005013F6 /* DiseaseConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiseaseConfigurator.swift; sourceTree = "<group>"; };
 		3D891BE0D2FA8689CC03E0D9 /* Pods-finalproject_1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-finalproject_1.debug.xcconfig"; path = "Target Support Files/Pods-finalproject_1/Pods-finalproject_1.debug.xcconfig"; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				2C8A2500258B937E00046F18 /* Chat.swift */,
 				2C25513C25AB326E00C11A69 /* Period.swift */,
 				2CBFD1D925B46C48005013F6 /* Disease.swift */,
+				2C8DA98F25B6F2370066B651 /* Emotion.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 			files = (
 				2C674FB72583AD2E00F6E4ED /* GraphPageViewController.swift in Sources */,
 				C62E5BFF2587D66800BC2135 /* GraphPageThreeViewController.swift in Sources */,
+				2C8DA99025B6F2370066B651 /* Emotion.swift in Sources */,
 				2C8A24F9258B5DEE00046F18 /* DoctorViewController.swift in Sources */,
 				2C68600C2576688600142B63 /* DetailPageViewController.swift in Sources */,
 				C62E5BEE2587D10100BC2135 /* GraphPageTwoViewController.swift in Sources */,

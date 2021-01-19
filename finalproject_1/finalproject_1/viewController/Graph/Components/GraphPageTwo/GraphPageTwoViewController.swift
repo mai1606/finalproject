@@ -31,7 +31,9 @@ class GraphPageTwoViewController: UIViewController {
     let dateFormat = DateFormatter()
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
-    var countSex = 0
+    var countSex : Float = 0.0
+    var countNoSex : Float = 0.0
+    var countProtectSex : Float = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +59,7 @@ class GraphPageTwoViewController: UIViewController {
         //sexLabel.layer.cornerRadius = 10
         
         sexProgressView.layer.cornerRadius = 10
-        sexProgressView.tintColor = UIColor.blue
+        //sexProgressView.tintColor = UIColor.blue
         sexProgressView.layer.borderColor = UIColor.orange.cgColor
         sexProgressView.layer.masksToBounds = true
         
@@ -68,22 +70,50 @@ class GraphPageTwoViewController: UIViewController {
     
     }
     override func viewWillAppear(_ animated: Bool) {
+        //รีค่า
+        countSex = 0.0
+        countNoSex = 0.0
+        countProtectSex = 0.0
+        let dateFormatter1 = DateFormatter()
+        dateFormatter1.dateFormat = "dd MMM yyyy"
+        
         db.collection("users").document(user!.uid).collection("date").getDocuments() {
             (data, errorr) in
             if (errorr == nil) {
                 var setDetails : [String] = []
+                var setDay : String = ""
                 for  document in data!.documents {
-                   // print("print data =====> ",document.data()["Day"] as! String)
-                    //print("print data detail =======>",document.data()["Detail"] as! [String])
-                    //details = document.data()["Detail"] as! [String]
-                    setDetails.append(contentsOf: document.data()["Detail"] as! [String])
-                    for setDetail in setDetails {
-                        if (setDetail == "ป้องกัน" ){
-                            self.countSex = self.countSex + 1
-                            
-                            print("Count", self.countSex)
+                   // setDetails.append(contentsOf: document.data()["Detail"] as! [String])
+                    setDetails = document.data()["Detail"] as! [String]
+                    setDay = document.data()["Day"] as! String
+                    //เริ่ม
+                    let day =  dateFormatter1.string(from: self.toDay)
+                    
+                    let month = String(setDay.split(separator: " ")[1])+String(setDay.split(separator: " ")[2])
+                    
+                    let month1 = String(day.split(separator: " ")[1])+String(day.split(separator: " ")[2])
+                    //เปรียบเทียบเดือนจบ
+                    //print(month,month1)
+                    if month == month1 {
+                        for setDetail in setDetails {
+                            if (setDetail == "ป้องกัน" ){
+                                self.countProtectSex = self.countProtectSex + 1
+                                
+                                //print("Count", self.countSex)
+                            }
+                            if (setDetail == "ไม่ป้องกัน" ){
+                                self.countSex = self.countSex + 1
+                                
+                               // print("countSex", self.countSex)
+                            }
+                            if (setDetail == "ไม่มี" ){
+                                self.countNoSex = self.countNoSex + 1
+                                
+                               // print("countNoSex", self.countSex)
+                            }
                         }
                     }
+                    
                     self.setProgress()
                 }
             } else {
@@ -93,9 +123,18 @@ class GraphPageTwoViewController: UIViewController {
     }
     
     func setProgress() {
-        let setData: Float = 15/30
-      
-        noSexProgressView.progress = setData
+        let setData0: Float = countNoSex/30
+        let setData1: Float = countSex/30
+        let setData2: Float = countProtectSex/30
+        //print(setData2,setData0,setData1)
+        
+        noSexLabel.text = String(Int(countNoSex))+"  "
+        sexLabel.text = String(Int(countSex))+"  "
+        protectLabel.text = String(Int(countProtectSex))+"  "
+        
+        noSexProgressView.progress = setData0
+        sexProgressView.progress = setData1
+        protectProgressView.progress = setData2
     }
     
     func dbFirebase(){

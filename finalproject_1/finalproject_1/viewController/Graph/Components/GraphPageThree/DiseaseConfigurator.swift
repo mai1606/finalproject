@@ -12,12 +12,22 @@ import Foundation
 class DiseaseConfigurator {
     static func getDisease() -> [Disease] {
         return [
-            Disease(name: "โรคโลหิตจาง", symptom: ["ปริมาณมาก"]),
-            Disease(name: "โรคช็อกโกแลตซีสต์", symptom: ["ปริมาณมาก","ปวดท้อง","ศีรษะ"], emotion: ["test"]),
+            Disease(name: "โรคโลหิตจาง", symptom: ["ปริมาณมาก","อ่อนเพลีย"]),
+            Disease(name: "โรคช็อกโกแลตซีสต์", symptom: ["ปริมาณมาก","ปวดท้อง","ปวดศีรษะ"]),
             Disease(name: "เนื้องอกมดลูก", symptom: ["ปริมาณมาก","ปวดท้อง"]),
-            Disease(name: "เนื้องอกในรังไข่", symptom: ["ศีรษะ","ประจำเดือนเลื่อน"]),
+            Disease(name: "เนื้องอกในรังไข่", symptom: ["ปวดศีรษะ","ประจำเดือนเลื่อน"]),
             Disease(name: "โรคต่อมใต้สมองขาดเลือด", symptom: ["ปริมาณน้อย","เจ็บเต้านม"]),
             Disease(name: "อุ้งเชิงกรานอักเสบ", symptom: ["สีขาวมีเลือด","ปริมาณมาก"]),
         ]
     }
+    static func getEmotion() -> [Emotion] {
+        return [
+            Emotion(name: "อารมณ์ปกติ",emotion: ["ปกติ","มีความสุข"]),
+            Emotion(name: "อารมณ์แปรปรวน",emotion: ["มีอารมณ์แปรปรวน","เฉยเมย","เศร้าเสียใจ"]),
+            Emotion(name: "อารมณ์ไม่ดี",emotion: ["หงุดหงิด"]),
+          
+        ]
+    }
+    
 }
+

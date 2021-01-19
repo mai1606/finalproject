@@ -198,7 +198,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BFq-6X-wuC">
                                             <rect key="frame" x="80" y="13.5" width="274" height="35.5"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="เพศสัมพันธ์แบบไม่ป้องกัน" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8n-Af-Rez">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="เพศสัมพันธ์แบบป้องกัน" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8n-Af-Rez">
                                                     <rect key="frame" x="0.0" y="0.0" width="274" height="15.5"/>
                                                     <fontDescription key="fontDescription" name="Kanit-Medium" family="Kanit" pointSize="13"/>
                                                     <nil key="textColor"/>
