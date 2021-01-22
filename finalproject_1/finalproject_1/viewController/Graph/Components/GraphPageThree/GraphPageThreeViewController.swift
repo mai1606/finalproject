@@ -12,7 +12,8 @@ import Foundation
 import Firebase
 
 class GraphPageThreeViewController: UIViewController {
-
+    @IBOutlet weak var headLabel1: UILabel!
+    @IBOutlet weak var headLabel2: UILabel!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var backgroundView2: UIView!
     @IBOutlet weak var diseaseProgressView1: UIProgressView!
@@ -46,6 +47,11 @@ class GraphPageThreeViewController: UIViewController {
         
     }
     func setup() {
+        headLabel1.layer.cornerRadius = 20
+        headLabel1.layer.masksToBounds = true
+        headLabel2.layer.cornerRadius = 20
+        headLabel2.layer.masksToBounds = true
+        
         backgroundView.layer.cornerRadius = 20
         backgroundView.layer.shadowColor = UIColor.black.cgColor
         backgroundView.layer.shadowOffset = .zero
@@ -82,6 +88,9 @@ class GraphPageThreeViewController: UIViewController {
         diseaseProgressView5.layer.borderColor = UIColor.orange.cgColor
         diseaseProgressView5.layer.masksToBounds = true
         
+       
+        headLabel1.font = UIFont(name: "Kanit-Light", size: UIFont.labelFontSize)
+        headLabel2.font = UIFont(name: "Kanit-Light", size: UIFont.labelFontSize)
         diseaseLabel4.font = UIFont(name: "Kanit-Light", size: UIFont.labelFontSize)
         diseaseLabel1.font = UIFont(name: "Kanit-Light", size: UIFont.labelFontSize)
         diseaseLabel2.font = UIFont(name: "Kanit-Light", size: UIFont.labelFontSize)

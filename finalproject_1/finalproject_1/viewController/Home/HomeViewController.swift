@@ -59,7 +59,7 @@ class HomeViewController: UIViewController {
 //        countDownLabel.text = String(numCount)
 //        setImageGraphics()
        
-        dbData()
+       dbData()
        
        // lastday  = dateFormat3.date(from: NextPeriodMonth)!
 //        print("1==========>",lastday)
@@ -70,7 +70,7 @@ class HomeViewController: UIViewController {
         
     }
     func dbData()  {
-        dateFormat2.dateFormat = "YYYY"
+        dateFormat2.dateFormat = "MMM YYYY"
         dateFormat3.dateFormat = "dd MMM yyyy"
 //        dateFormat3.locale = Locale(identifier: "th_TH")
         let docRef = db.collection("users").document(user!.uid).collection("periods").document (dateFormat2.string(from: toDay))

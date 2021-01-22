@@ -27,6 +27,8 @@
                 <outlet property="diseaseProgressView3" destination="92e-MJ-M4Z" id="kAs-aT-aVr"/>
                 <outlet property="diseaseProgressView4" destination="pxF-7S-rbG" id="5um-TG-dnN"/>
                 <outlet property="diseaseProgressView5" destination="FcL-u7-vup" id="by6-VA-Lu8"/>
+                <outlet property="headLabel1" destination="CM0-AH-FB7" id="GdY-0j-L6b"/>
+                <outlet property="headLabel2" destination="9UX-NK-lqs" id="y6u-kD-xkV"/>
                 <outlet property="view" destination="Q6s-qU-B2g" id="90a-eO-VDc"/>
             </connections>
         </placeholder>
@@ -48,19 +50,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="60"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="อาการ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CM0-AH-FB7">
-                                                    <rect key="frame" x="-20" y="10" width="100" height="40"/>
-                                                    <color key="backgroundColor" name="incomingAudioMessageTint"/>
+                                                    <rect key="frame" x="-40" y="10" width="130" height="40"/>
+                                                    <color key="backgroundColor" name="Color_main2"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="Ecb-rd-Aj9"/>
+                                                        <constraint firstAttribute="width" constant="130" id="Ecb-rd-Aj9"/>
                                                         <constraint firstAttribute="height" constant="40" id="iUS-eS-YXy"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="CM0-AH-FB7" firstAttribute="leading" secondItem="9Ld-gp-i2O" secondAttribute="leading" constant="-20" id="Coi-UP-Zt8"/>
+                                                <constraint firstItem="CM0-AH-FB7" firstAttribute="leading" secondItem="9Ld-gp-i2O" secondAttribute="leading" constant="-40" id="Coi-UP-Zt8"/>
                                                 <constraint firstItem="CM0-AH-FB7" firstAttribute="top" secondItem="9Ld-gp-i2O" secondAttribute="top" constant="10" id="FUU-OT-IE0"/>
                                                 <constraint firstAttribute="height" constant="60" id="rvg-2G-leh"/>
                                             </constraints>
@@ -302,21 +304,21 @@
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="อารมณ์" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9UX-NK-lqs">
-                                                    <rect key="frame" x="-30" y="10" width="100" height="40"/>
-                                                    <color key="backgroundColor" name="incomingAudioMessageTint"/>
+                                                    <rect key="frame" x="-55" y="10" width="130" height="40"/>
+                                                    <color key="backgroundColor" name="Color_main3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="ZHz-bl-G42"/>
-                                                        <constraint firstAttribute="width" constant="100" id="w4g-kE-23f"/>
+                                                        <constraint firstAttribute="width" constant="130" id="w4g-kE-23f"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="collectionViewBackground"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="9UX-NK-lqs" firstAttribute="top" secondItem="kgj-su-sTO" secondAttribute="top" constant="10" id="5Rq-0d-Oxb"/>
                                                 <constraint firstAttribute="height" constant="40" id="8bz-7d-8vJ"/>
-                                                <constraint firstItem="9UX-NK-lqs" firstAttribute="leading" secondItem="kgj-su-sTO" secondAttribute="leading" constant="-30" id="9Bq-nX-Y8X"/>
+                                                <constraint firstItem="9UX-NK-lqs" firstAttribute="leading" secondItem="kgj-su-sTO" secondAttribute="leading" constant="-55" id="9Bq-nX-Y8X"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tUw-m9-lNf">
@@ -421,11 +423,11 @@
         <namedColor name="Color_main2">
             <color red="0.51372549019607838" green="0.78823529411764703" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="Color_main3">
+            <color red="0.93725490196078431" green="0.59607843137254901" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="collectionViewBackground">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </namedColor>
-        <namedColor name="incomingAudioMessageTint">
-            <color red="0.0" green="0.4779999852180481" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

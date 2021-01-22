@@ -299,19 +299,19 @@
         <!--สรุปผล-->
         <scene sceneID="ySb-Vv-E64">
             <objects>
-                <viewController id="V4e-mi-oqy" customClass="GraphPageViewController" customModule="finalproject_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CalendarPage" id="V4e-mi-oqy" customClass="GraphPageViewController" customModule="finalproject_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eOo-xe-rhG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N5w-9B-jIl">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="88" width="403" height="725"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" distribution="fillEqually" spacing="53.5" translatesAutoresizingMaskIntoConstraints="NO" id="wZQ-Nd-8zk">
-                                        <rect key="frame" x="20" y="20" width="374" height="76"/>
+                                        <rect key="frame" x="20" y="20" width="363" height="76"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qx2-th-Sng">
-                                                <rect key="frame" x="8" y="8" width="83.5" height="60"/>
+                                                <rect key="frame" x="8" y="8" width="80" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="k36-zQ-MP9"/>
                                                     <constraint firstAttribute="height" constant="60" id="nck-aM-M6F"/>
@@ -322,7 +322,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzf-fQ-jjf">
-                                                <rect key="frame" x="145" y="8" width="84" height="60"/>
+                                                <rect key="frame" x="141.5" y="8" width="80" height="60"/>
                                                 <color key="backgroundColor" red="0.56862745100000001" green="0.78823529410000004" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="0eg-zj-WKx"/>
@@ -334,7 +334,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSE-1x-k4H">
-                                                <rect key="frame" x="282.5" y="8" width="83.5" height="60"/>
+                                                <rect key="frame" x="275" y="8" width="80" height="60"/>
                                                 <color key="backgroundColor" red="0.56862745100000001" green="0.78823529410000004" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="Fgb-7x-zhg"/>
@@ -352,7 +352,7 @@
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ng-se-Kla">
-                                        <rect key="frame" x="87" y="119" width="240" height="60"/>
+                                        <rect key="frame" x="81.5" y="119" width="240" height="60"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vlw-Mv-kIJ">
                                                 <rect key="frame" x="8" y="20" width="224" height="21"/>
@@ -375,7 +375,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="71n-SX-BKy">
-                                        <rect key="frame" x="0.0" y="179" width="414" height="550"/>
+                                        <rect key="frame" x="0.0" y="179" width="403" height="550"/>
                                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="550" id="axe-cs-Rad"/>
@@ -502,7 +502,7 @@
         <!--Calendar Page View Controller-->
         <scene sceneID="Npy-Qg-dkG">
             <objects>
-                <viewController storyboardIdentifier="CalendarPageView" id="fJd-Kt-MEl" customClass="CalendarPageViewController" customModule="finalproject_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="CalendarPageView" storyboardIdentifier="CalendarPageView" id="fJd-Kt-MEl" customClass="CalendarPageViewController" customModule="finalproject_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tiq-LJ-OfR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -535,6 +535,12 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="selectionColor">
                                                 <color key="value" name="Color_main3"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="eventDefaultColor">
+                                                <color key="value" name="Color_main2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="eventSelectionColor">
+                                                <color key="value" name="Color_main4"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Zfi-iR-sDW">
@@ -553,13 +559,13 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ประจำเดือนมา?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hP3-hi-etx">
-                                                        <rect key="frame" x="30" y="0.0" width="264" height="30"/>
+                                                        <rect key="frame" x="30" y="0.0" width="314" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8kB-eU-MiT">
-                                                        <rect key="frame" x="294" y="0.0" width="50" height="30"/>
+                                                        <rect key="frame" x="344" y="0.0" width="50" height="30"/>
                                                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="jse-ON-2Js"/>
@@ -572,24 +578,98 @@
                                                             <action selector="ChooseDay:" destination="fJd-Kt-MEl" eventType="touchUpInside" id="7Va-Iu-4h9"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nI-Wr-uEp">
-                                                        <rect key="frame" x="344" y="0.0" width="50" height="30"/>
-                                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="2NE-RT-7ZA"/>
-                                                            <constraint firstAttribute="width" constant="50" id="xGj-AL-5qS"/>
-                                                        </constraints>
-                                                        <state key="normal" title="ไม่">
-                                                            <color key="titleColor" systemColor="labelColor"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="ChooseDay:" destination="fJd-Kt-MEl" eventType="touchUpInside" id="Lbb-cD-mXJ"/>
-                                                        </connections>
-                                                    </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZT-mo-lb1">
                                                         <rect key="frame" x="394" y="0.0" width="20" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="20" id="fcx-Y6-yi0"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0kv-zk-wzy">
+                                                <rect key="frame" x="0.0" y="30" width="414" height="30"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6fL-Qf-USe">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="30" id="xhU-9s-iw7"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ประจำเดือนหมดแล้ว?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKz-hJ-3QB">
+                                                        <rect key="frame" x="30" y="0.0" width="314" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sK-On-RfZ">
+                                                        <rect key="frame" x="344" y="0.0" width="50" height="30"/>
+                                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="GTO-PC-CiN"/>
+                                                            <constraint firstAttribute="height" constant="30" id="sv3-Nw-HxU"/>
+                                                        </constraints>
+                                                        <state key="normal" title="ใช่">
+                                                            <color key="titleColor" systemColor="labelColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="ChooseDay2:" destination="fJd-Kt-MEl" eventType="touchUpInside" id="tmC-82-jUC"/>
+                                                            <action selector="ChooseDay:" destination="fJd-Kt-MEl" eventType="touchUpInside" id="UhJ-Yb-qiU"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UfQ-21-8ew">
+                                                        <rect key="frame" x="394" y="0.0" width="20" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="20" id="KNc-px-bCW"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Rh-eO-OeW">
+                                                <rect key="frame" x="0.0" y="30" width="414" height="30"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iko-6j-jQu">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="30" id="bZU-Gs-fCL"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="เพิ่มวันประจำเดือน" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKM-wH-29b">
+                                                        <rect key="frame" x="30" y="0.0" width="314" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Af4-em-hr5">
+                                                        <rect key="frame" x="344" y="0.0" width="50" height="30"/>
+                                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="4mS-Ts-IsB"/>
+                                                            <constraint firstAttribute="height" constant="30" id="r5J-3k-gj6"/>
+                                                        </constraints>
+                                                        <state key="normal" title="ใช่">
+                                                            <color key="titleColor" systemColor="labelColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="ChooseDay2:" destination="fJd-Kt-MEl" eventType="touchUpInside" id="BiZ-hV-0Xk"/>
+                                                            <action selector="ChooseDay:" destination="fJd-Kt-MEl" eventType="touchUpInside" id="upW-1p-Skz"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vag-R4-e2X">
+                                                        <rect key="frame" x="394" y="0.0" width="20" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="20" id="O9z-H7-ogY"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -760,6 +840,8 @@
                         <outlet property="calendar" destination="r0V-IU-XFg" id="ixT-5H-8AE"/>
                         <outlet property="calendarCollectionview" destination="2Gg-qD-THn" id="Fnj-Ae-mUP"/>
                         <outlet property="firstStackView" destination="V1S-tc-qzP" id="gke-UI-34I"/>
+                        <outlet property="firstStackView2" destination="0kv-zk-wzy" id="oZb-nJ-FlG"/>
+                        <outlet property="firstStackView3" destination="4Rh-eO-OeW" id="JmW-ep-pft"/>
                         <outlet property="fourthStackView" destination="aOL-CP-hYc" id="bLT-3R-UF2"/>
                         <outlet property="secondStackView" destination="QU0-yF-8o4" id="Fcm-ke-GdJ"/>
                         <outlet property="sixStackView" destination="fbi-9u-yZQ" id="z4k-Ot-bf3"/>
@@ -1784,14 +1866,14 @@
         <namedColor name="Color_main3">
             <color red="0.93725490196078431" green="0.59607843137254901" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="Color_main4">
+            <color red="0.65490196078431373" green="0.70980392156862748" blue="0.83529411764705885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="scrollViewTexturedBackgroundColor">
             <color red="0.43529411764705878" green="0.44313725490196082" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

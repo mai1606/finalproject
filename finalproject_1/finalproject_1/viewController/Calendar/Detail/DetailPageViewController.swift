@@ -29,18 +29,24 @@ class DetailPageViewController: UIViewController {
     @IBOutlet weak var DropDownBtnW: UIButton!
     @IBOutlet weak var DropDownBtnWater: UIButton!
     
+    @IBOutlet weak var wUiLabel: UILabel!
+    @IBOutlet weak var waterLabel: UILabel!
+    
+    
     var emotions: [Detail] = DetailPageConfigurator.getEmotion()
     var symptons: [Detail] = DetailPageConfigurator.getSymptons()
     var sexs: [Detail] = DetailPageConfigurator.getSex()
     var contents: [Detail] = DetailPageConfigurator.getContent()
     var leucorrhoeas: [Detail] = DetailPageConfigurator.getLeucorrhoea()
+    var Alldate: [Detail] = DetailPageConfigurator.getAll()
     
     var selectEmotions: [String] = []
     var selectSymptons: [String] = []
     var selectSexs: [String] = []
     var selectContents: [String] = []
     var selectLeucorrhoeas: [String] = []
-    
+    var waterD : Int = 0
+    var weight : Int = 50
     //date
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
@@ -83,7 +89,8 @@ class DetailPageViewController: UIViewController {
         menuW.selectionAction = { index ,title in
          //  print("index\(index),Title\(title)")
              self.DropDownBtnW.setTitle(title, for: .normal)
-        
+            self.wUiLabel.font = UIFont(name: "Kanit-Light", size: UIFont.labelFontSize)
+            self.waterLabel.font = UIFont(name: "Kanit-Light", size: UIFont.labelFontSize)
         }
         menuH.selectionAction = { index ,title in
          //  print("index\(index),Title\(title)")
@@ -93,6 +100,50 @@ class DetailPageViewController: UIViewController {
         
     
     }
+    func DbFirebase()  {
+        let docRef = db.collection("users").document(user!.uid).collection("date").document (dateFormatter.string(from: selectedDate))
+        
+        docRef.getDocument { [self] (document, error) in
+            if let document = document, document.exists {
+                let  dataDescription = document.data()!["Detail"] as! [String]
+//                for a in dataDescription {
+//                    if Alldate.contains(where: a){
+//                        
+//                    }
+//                }
+            }
+        }
+    }
+    @IBAction func btn(_ sender: Any){
+        if (sender as AnyObject).tag == 0 {
+            weight -= 1
+            wUiLabel.text = String(weight)
+        }
+        else if (sender as AnyObject).tag == 1 {
+            weight += 1
+            wUiLabel.text = String(weight)
+        }
+        
+       else  if (sender as AnyObject).tag == 2 {
+            
+            waterD -= 1
+                if waterD < 0 {
+                    waterD = 0
+                }
+            waterLabel.text = String(waterD)
+        }
+        
+        else if (sender as AnyObject).tag == 3 {
+            waterD += 1
+            if waterD > 20 {
+                waterD = 20
+            }
+            waterLabel.text = String(waterD)
+        }
+        
+        
+    }
+    
     @IBAction func btnWater(_ sender: Any) {
         if (sender as AnyObject).tag == 1 {
             waterStack.isHidden = true
@@ -101,11 +152,12 @@ class DetailPageViewController: UIViewController {
             waterStack.isHidden = false
             weightStack.isHidden = true
         }else if (sender as AnyObject).tag == 2{
-            dateFormatter.dateFormat = "d MMM yyyy"
-            dateFormatter.string(from: selectedDate)
-            var x = 0
-            db.collection("users").document(user!.uid).collection("date").document("\(dateFormatter.string(from: selectedDate))").setData(["Detail":  selectEmotions,"Day":"\(dateFormatter.string(from: selectedDate))"])
-           
+//            dateFormatter.dateFormat = "d MMM yyyy"
+//            dateFormatter.string(from: selectedDate)
+//            var x = 0
+            db.collection("users").document(user!.uid).collection("date").document("\(dateFormatter.string(from: selectedDate))").setData(["Detail":  selectEmotions,"Day":"\(dateFormatter.string(from: selectedDate))","weight":weight,"drinkWater":waterD])
+         
+            //performSegue(withIdentifier: "CalendarPageView", sender: )
         }
         
         
@@ -223,7 +275,7 @@ extension DetailPageViewController: UICollectionViewDelegate, UICollectionViewDa
         } else {
             return
         }
-        print("=======>",selectEmotions)
+      
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -257,7 +309,7 @@ extension DetailPageViewController: UICollectionViewDelegate, UICollectionViewDa
         } else {
             return
         }
-        print("=======>",selectEmotions)
+      
     }
     
     
