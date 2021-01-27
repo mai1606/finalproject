@@ -8,7 +8,7 @@ target 'finalproject_1' do
  	pod 'Firebase/Auth'
 	pod 'Firebase/Core'
 	pod 'Firebase/Firestore'
-  	pod 'Firebase/Database'
+  pod 'Firebase/Database'
 	pod 'IQKeyboardManagerSwift', '6.5.0'
 	pod 'DropDown'
 	pod 'FSCalendar'
@@ -17,6 +17,9 @@ target 'finalproject_1' do
 	pod 'MessageKit'
 	pod 'MultiProgressView'
   pod 'NVActivityIndicatorView', :git => 'https://github.com/ninjaprox/NVActivityIndicatorView.git', :tag => '4.8.0'
+  
+  pod 'CollectionPickerView'
+  
 
   # Pods for finalproject_1
 	# add the Firebase pod for Google Analytics

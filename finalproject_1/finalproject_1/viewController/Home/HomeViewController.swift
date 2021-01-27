@@ -25,12 +25,14 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var countDownLabel: UILabel!
     let dateFormat = DateFormatter()
     let dateFormat2 = DateFormatter()
+    let dateFormat5 = DateFormatter()
     let dateFormat3 = DateFormatter()
     let dateFormat4 = DateFormatter()
     var numCount = 0
     var period = true
     var toDay = Date.currentDate()
     
+    var monthCheck : [String] = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
     var NextPeriodMonth = ""
@@ -59,7 +61,27 @@ class HomeViewController: UIViewController {
 //        countDownLabel.text = String(numCount)
 //        setImageGraphics()
        
-       dbData()
+       
+//        let firebaseAuth = Auth.auth()
+//            do {
+//              try firebaseAuth.signOut()
+//            } catch let signOutError as NSError {
+//              print ("Error signing out: %@", signOutError)
+//            }
+//
+//        UserDefaults.standard.removeObject(forKey: "userName")
+//        UserDefaults.standard.removeObject(forKey: "userEmail")
+//        UserDefaults.standard.removeObject(forKey: "userNeed")
+//        UserDefaults.standard.removeObject(forKey: "periodDay")
+//        UserDefaults.standard.removeObject(forKey: "periodMonth")
+//        UserDefaults.standard.removeObject(forKey: "userAge")
+//        UserDefaults.standard.removeObject(forKey: "userGender")
+
+//            let LoginViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.loginViewController) as? ViewController
+//                self.view.window?.rootViewController = UINavigationController(rootViewController: LoginViewController!)
+//                self.view.window?.makeKeyAndVisible()
+            
+        
        
        // lastday  = dateFormat3.date(from: NextPeriodMonth)!
 //        print("1==========>",lastday)
@@ -69,19 +91,83 @@ class HomeViewController: UIViewController {
 //        print("2=============>",daycalculate,"ค่าที่เอาไปใช่",lastday)
         
     }
-    func dbData()  {
+    func dbCheck(){
+        dateFormat4.dateFormat = "yyyy"
+        dateFormat3.dateFormat = "MMM"
+        dateFormat5.dateFormat = "MMM yyyy"
+        guard let user1 = user else {
+            do {
+                try Auth.auth().signOut()
+                
+            } catch  let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+            }
+            
+            return
+        }
+//        self.db.collection("users").document(self.user!.uid).collection("periods").getDocuments{ (document, error) in
+        //dateFormat2.string(from: toDay)
+        db.collection("users").document(user1.uid).collection("periods").getDocuments{(document, error) in
+            var Days :String = ""
+            if  document == document{
+                for a in document!.documents{
+                    if a.data()["periodMonth"] as! String == self.dateFormat5.string(from: self.toDay){
+                        self.dbData(day: self.dateFormat5.string(from: self.toDay))
+                    }else {
+                        for (index,a) in self.monthCheck.enumerated() {
+                            if a == self.dateFormat3.string(from: self.toDay){
+                                Days = self.monthCheck[index-1]+" "+self.dateFormat4.string(from: self.toDay)
+                                self.dbData(day:Days)
+//                                if let dateData = self.dateFormat5.date(from: Days){
+//
+//                                }
+                               
+                               // print(">>>>>>",Days)
+                            }
+                        }
+                    }
+                }
+            }else{
+               
+            }
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "CalendarPageView") as! CalendarPageViewController
+            UserDefaults.standard.set(Days, forKey: "dayFromHome")
+            
+    }
+}
+        func dbData(day:String)  {
         dateFormat2.dateFormat = "MMM YYYY"
         dateFormat3.dateFormat = "dd MMM yyyy"
 //        dateFormat3.locale = Locale(identifier: "th_TH")
-        let docRef = db.collection("users").document(user!.uid).collection("periods").document (dateFormat2.string(from: toDay))
+        guard let user = user else {
+            do {
+                try Auth.auth().signOut()
+                
+            } catch  let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+            }
+            
+            return
+        }
+        let docRef = db.collection("users").document(user.uid).collection("periods")
         
         
-        docRef.getDocument {(document, error) in
-            if let document = document, document.exists {
-               let  dataDescription = document.data()!["periodsNextMonth"] as! String
-               let  isPeriodDb = document.data()!["periods"] as! [String]
-               let firstPeriod = document.data()!["firstPeriods"] as! String
-                let ovulationDay = document.data()!["ovulationDay"] as! [String]
+        docRef.getDocuments{(document, error) in
+            if  document == document{
+                var  dataDescription : String = ""
+                var  isPeriodDb : [String] = []
+                var firstPeriod : String = ""
+                var ovulationDay : [String] = []
+                for document in document!.documents{
+                    if document.data()["periodMonth"] as! String == day {
+                        dataDescription = document.data()["periodsNextMonth"] as! String
+                        isPeriodDb = document.data()["periods"] as! [String]
+                        firstPeriod = document.data()["firstPeriods"] as! String
+                        ovulationDay = document.data()["ovulationDay"] as! [String]
+                    }
+                }
+              
                 self.NextPeriodMonth = dataDescription
                 self.isPeriod = isPeriodDb
                
@@ -116,11 +202,11 @@ class HomeViewController: UIViewController {
                 }
                 else{
                     self.periodTodayYesNo = false
-                    print("lastDate",self.lastday)
-                    print(self.daycalculate)
+//                    print("lastDate",self.lastday)
+//                    print(self.daycalculate)
                     self.daycalculate = self.daysBetween(start: self.toDay, end: self.lastday)
                     self.daycalculate1 = self.daysBetween(start:sDay!, end: self.toDay)
-                    print(self.daycalculate1,"aaaaaa")
+                    //print(self.daycalculate1,"aaaaaa")
                     //  ====     เช็คหลังมีประจำเดือน
                         if self.daycalculate1 >= 7 && self.daycalculate1 <= 8{
                             self.periodTodayYesNo1 = true
@@ -131,21 +217,12 @@ class HomeViewController: UIViewController {
                     self.setImageGraphics(days: self.daycalculate)
                   
                 }
-//                for a in self.isPeriod {
-//
-//                    if aDay == a {
-//                        self.periodTodayYesNo = true
-//                         print(a)
-//                        print(self.periodTodayYesNo)
-//                    }
-//                }
-                
-                
             }else {
                 print("ไม่มีข้อมูล")
             
             }
         }
+        setImageGraphics(days: daycalculate)
     }
     
 
@@ -157,7 +234,7 @@ class HomeViewController: UIViewController {
     func setImageGraphics(days: Int)  {
        //print(days)
         if (days == 0 || days < 0)  && periodTodayYesNo == false && periodTodayYesNo1 == false {
-            statusLabel.text = "วันคาดการประจำเด็นมา"
+            statusLabel.text = "วันคาดการประจำเดือนมา"
             textStatusLabel.text = "คาดการวันที่"
             countDownLabel.text = String(days*(-1)+1)
            // print("aaaaaa",days*1)
@@ -189,58 +266,25 @@ class HomeViewController: UIViewController {
        
         else if ovulationDayYesNo {
             statusLabel.text = "วันไข่สุก"
-            textStatusLabel.text = "ประจำเดือนมาวันที่"
-            countDownLabel.text = "0"+String(days)
+            textStatusLabel.text = "ประจำเดือนจะมาในอีก"
+            countDownLabel.text = String(days)
             imageUIview.image = UIImage(named:"character205")
             ovulationDayYesNo = false
         }else{
             statusLabel.text = "ปกติ"
-            textStatusLabel.text = "ประจำเดือนมาวันที่"
+            textStatusLabel.text = "ประจำเดือนจะมาในอีก"
             countDownLabel.text = String(days)
             imageUIview.image = UIImage(named:"character201")
-        }
-        
-        
-        
-        
-//        if(numCount == 0 && numCount < 0){
-//            statusLabel.text = "วันคาดการประจำเด็นมา"
-//            textStatusLabel.text = "คาดการวันที่"
-//            imageUIview.image = UIImage(named:"character202")
-//            if(period){
-//                statusLabel.text = "ระหว่างประจำเดือน"
-//                textStatusLabel.text = "เป็นประจำเดือนวันที่"
-//                imageUIview.image = UIImage(named:"character202")
-//            }
-//        }
-//        else if(numCount >= 0 && numCount < 7){
-//            statusLabel.text = "ก่อนประจำเดือนมา"
-//            imageUIview.image = UIImage(named:"character206")
-//        }else if(numCount >= 8 && numCount < 12){
-//            statusLabel.text = "หลังประจำเดือนมา"
-//            textStatusLabel.text = "ประจำเดือนจะมาในอีก"
-//            imageUIview.image = UIImage(named:"character203")
-//        }else if(numCount >= 12 && numCount < 14){
-//            statusLabel.text = "ช่วงไข่สุก"
-//            textStatusLabel.text = "ประจำเดือนจะมาในอีก"
-//            imageUIview.image = UIImage(named:"character205")
-//        }else if(numCount >=  14 && numCount < 15){
-//            statusLabel.text = "วันไข่ตก"
-//            textStatusLabel.text = "ประจำเดือนจะมาในอีก"
-//            imageUIview.image = UIImage(named:"character204")
-//        }else{
-//            statusLabel.text = "ปกติ"
-//            textStatusLabel.text = "ประจำเดือนจะมาในอีก"
-//            imageUIview.image = UIImage(named:"character201")
-//        }
         
     }
+}
     
     override func viewWillAppear(_ animated: Bool) {
         
        
-        dbData()
-        setImageGraphics(days: daycalculate)
+  //  dbData()
+        dbCheck()
+      
         
         
         
@@ -249,15 +293,23 @@ class HomeViewController: UIViewController {
          handle = Auth.auth().addStateDidChangeListener { (auth, user) in
                       if Auth.auth().currentUser != nil {
                     // User is signed in.
-                         
+                        if UserDefaults.standard.string(forKey: "status") == "doctor" {
+                            let userMainViewController = self.storyboard?.instantiateViewController(identifier: "profilePage")
+                            self.view.window?.rootViewController = userMainViewController
+                            self.view.window?.makeKeyAndVisible()
+                        }
                       } else {
                     // No user is signed in.
-                        let LoginViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.loginViewController) as? ViewController
-                            self.view.window?.rootViewController = UINavigationController(rootViewController: LoginViewController!)
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginVC")
+                        self.view.window?.rootViewController = UINavigationController(rootViewController: loginViewController)
+                        self.view.window?.makeKeyAndVisible()
+                        
                             self.view.window?.makeKeyAndVisible()
-                      }
+                    }
                   }
        
     }
    
 }
+

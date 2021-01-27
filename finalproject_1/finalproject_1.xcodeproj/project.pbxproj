@@ -47,6 +47,8 @@
 		2C8A2504258B93B600046F18 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A2503258B93B600046F18 /* Message.swift */; };
 		2C8A2507258B950500046F18 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A2506258B950500046F18 /* ChatViewController.swift */; };
 		2C8DA99025B6F2370066B651 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DA98F25B6F2370066B651 /* Emotion.swift */; };
+		2CA2A75425C9806600E25679 /* UserModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA2A75325C9806600E25679 /* UserModifyViewController.swift */; };
+		2CA2A84325CC34A000E25679 /* CollectionPickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA2A84225CC34A000E25679 /* CollectionPickerViewCell.swift */; };
 		2CBFD1DA25B46C48005013F6 /* Disease.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFD1D925B46C48005013F6 /* Disease.swift */; };
 		2CBFD1DD25B46CE0005013F6 /* DiseaseConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFD1DC25B46CDF005013F6 /* DiseaseConfigurator.swift */; };
 		BE4BB79B39BCDA73EDAD2BC1 /* Pods_finalproject_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E27F8AED665498425F9FC /* Pods_finalproject_1.framework */; };
@@ -103,6 +105,8 @@
 		2C8A2503258B93B600046F18 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		2C8A2506258B950500046F18 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		2C8DA98F25B6F2370066B651 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
+		2CA2A75325C9806600E25679 /* UserModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModifyViewController.swift; sourceTree = "<group>"; };
+		2CA2A84225CC34A000E25679 /* CollectionPickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPickerViewCell.swift; sourceTree = "<group>"; };
 		2CBFD1D925B46C48005013F6 /* Disease.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disease.swift; sourceTree = "<group>"; };
 		2CBFD1DC25B46CDF005013F6 /* DiseaseConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiseaseConfigurator.swift; sourceTree = "<group>"; };
 		3D891BE0D2FA8689CC03E0D9 /* Pods-finalproject_1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-finalproject_1.debug.xcconfig"; path = "Target Support Files/Pods-finalproject_1/Pods-finalproject_1.debug.xcconfig"; sourceTree = "<group>"; };
@@ -166,13 +170,13 @@
 		2C062CAC253EBEFD00BA3515 /* viewController */ = {
 			isa = PBXGroup;
 			children = (
+				2CA2A75125C9801E00E25679 /* User */,
 				2C8A24F4258B5B0800046F18 /* Chat */,
 				2C674FB425824F4300F6E4ED /* Home */,
 				2C674FB325824F3500F6E4ED /* Graph */,
 				2C68601225766BA500142B63 /* Calendar */,
 				C60B803825449F96001AE09E /* Login */,
 				2C062C96253EB25D00BA3515 /* ViewController.swift */,
-				2C55DB4625433189002437DF /* UserMainViewController.swift */,
 			);
 			path = viewController;
 			sourceTree = "<group>";
@@ -293,6 +297,16 @@
 				2C8A2506258B950500046F18 /* ChatViewController.swift */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		2CA2A75125C9801E00E25679 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				2C55DB4625433189002437DF /* UserMainViewController.swift */,
+				2CA2A75325C9806600E25679 /* UserModifyViewController.swift */,
+				2CA2A84225CC34A000E25679 /* CollectionPickerViewCell.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		4DC4C7D10A1B6476BA948475 /* Frameworks */ = {
@@ -519,7 +533,9 @@
 				2C8A2507258B950500046F18 /* ChatViewController.swift in Sources */,
 				2C674FBB2583AF3200F6E4ED /* StackedBar.swift in Sources */,
 				2CBFD1DD25B46CE0005013F6 /* DiseaseConfigurator.swift in Sources */,
+				2CA2A75425C9806600E25679 /* UserModifyViewController.swift in Sources */,
 				C62E5BE52587C46D00BC2135 /* GraphPageOneViewController.swift in Sources */,
+				2CA2A84325CC34A000E25679 /* CollectionPickerViewCell.swift in Sources */,
 				2C062CB7253F0A4000BA3515 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,8 +681,9 @@
 			baseConfigurationReference = 3D891BE0D2FA8689CC03E0D9 /* Pods-finalproject_1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L8J8BVQK6R;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = finalproject_1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -674,6 +691,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "th.ac.su.ict.wsnp2020.tw11.finalproject-1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -684,8 +702,9 @@
 			baseConfigurationReference = 2808E83D6518B139A23503ED /* Pods-finalproject_1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L8J8BVQK6R;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = finalproject_1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -693,6 +712,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "th.ac.su.ict.wsnp2020.tw11.finalproject-1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

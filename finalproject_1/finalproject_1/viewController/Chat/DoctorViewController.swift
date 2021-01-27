@@ -8,17 +8,27 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 class DoctorViewController: UIViewController {
     
     @IBOutlet weak var chatTable: UITableView!
     
     var doctors: [Doctor] = []
+    var users: [UserChat] = []
+    var uidUsers: [String] = []
+    var status: String = ""
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        status = UserDefaults.standard.string(forKey: "status") ?? ""
+        //setUp()
+      
+    }
+    override func viewWillAppear(_ animated: Bool) {
         setUp()
+       
     }
     
     func setUp()  {
@@ -26,58 +36,117 @@ class DoctorViewController: UIViewController {
 //        chatTable.register(DoctorTableViewCell.self, forCellReuseIdentifier: "DoctorTableViewCell")
         chatTable.dataSource = self
         chatTable.delegate = self
-        chatTable.register(UINib(nibName: "DoctorTableViewCell", bundle: nil), forCellReuseIdentifier: "DoctorTableViewCell")
+        if status == "doctor" , let doctorUid = Auth.auth().currentUser?.uid {
+            chatTable.register(UITableViewCell.self, forCellReuseIdentifier: "chatTableViewCell")
+            db.collection("Chats").whereField("users", arrayContains: doctorUid).getDocuments(completion: { (data,error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else if let data = data {
+                    self.uidUsers.removeAll()
+                    self.users.removeAll()
+                    for document in data.documents {
+                        let users = document.data()["users"] as? [String]
+                        if let uid = users?.first(where: {$0 != doctorUid}) {
+                            self.uidUsers.append(uid)
+                        }
+                    }
+                    self.db.collection("users").whereField("uid", in: self.uidUsers).getDocuments(completion: { (data,error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        } else if let data = data {
+                            for document in data.documents {
+                                if let name = document.data()["NameUser"] as? String, let uid = document.data()["uid"] as? String {
+                                    self.users.append(UserChat(name: name, uid: uid))
+                                }
+                            }
+                            self.chatTable.reloadData()
+                        }
+                    })
+                }
+                })
+        } else {
+            chatTable.register(UINib(nibName: "DoctorTableViewCell", bundle: nil), forCellReuseIdentifier: "DoctorTableViewCell")
+            
+            db.collection("users").whereField("status", isEqualTo: "doctor").getDocuments(completion: {
+                (data,error) in
+                if (error == nil) {
+                    self.doctors.removeAll()
+                    for document in data!.documents {
+                        let name = document.data()["nameDoctor"] as? String
+                        let uid = document.data()["uid"] as? String
+                        
+                        
+                        self.doctors.append(Doctor(name: name, gender: "", nameHospital: "", nameUniversity: "", uid: uid, score: 0, history: []))
+                        
+    //                    doctor.name = document.data()["nameDoctor"] as! String
+    //                    doctor.name = document.data()["nameDoctor"] as! String
+
+    //                   print("",doctorsa)
+    //                    let name: String?
+    //                    let gender: String?
+    //                    let nameHospital:String?
+    //                    let nameUniversity:String?
+    //                    let uid: String?
+    //                    var score: Int
+    //                    let history: [String] = []
+                    }
+                    self.chatTable.reloadData()
+                }
+                else {
+                    print("fffffffffffff")
+                }
+            })
+        }
         
-//        let docRef = db.collection("users").whereField("status", in: ["Doctor"]).getDocuments(completion: {
-//            (data,error) in
-//
-//        })
     }
 }
 
 extension DoctorViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        if status == "doctor" {
+            return users.count
+        } else {
+            return doctors.count
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DoctorTableViewCell",for: indexPath) as? DoctorTableViewCell else { return UITableViewCell() }
-//        var doctor = doctors[indexPath.row]
-        if indexPath.row == 0 {
-//            cell.textLabel?.text = "test20"
-            cell.configurate(name: "test20")
+        if status == "doctor" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "chatTableViewCell",for: indexPath)
+            let user = users[indexPath.row]
+            cell.textLabel?.text = user.name
+            return cell
         } else {
-//            cell.textLabel?.text = "test15"
-            cell.configurate(name: "test15")
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DoctorTableViewCell",for: indexPath) as? DoctorTableViewCell else { return UITableViewCell() }
+            let doctor = doctors[indexPath.row]
+            cell.configurate(doctor)
+            
+            
+            cell.didClickDoctorButton = { [weak self] in
+                guard let strongSelf = self else { return }
+                print("test")
+            }
+            
+            return cell
         }
         
-        cell.didClickDoctorButton = { [weak self] in
-            guard let strongSelf = self else { return }
-            print("test")
-        }
-        
-        return cell
         
     }
     
   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        var doctor = doctors[indexPath.row]
-        //show chat messages
         let vc = ChatViewController()
-        vc.title = "Chat"
-        vc.user2UID = doctor.uid
-        vc.user2Name = doctor.name
-//        if indexPath.row == 0 {
-//            vc.user2UID = "g7aOSF7KUMTc116j4efExMqBFPm1"
-//            vc.user2Name = "test20"
-//        } else {
-//            vc.user2UID = "kCmCGsyXFnMgacdyuR6wk0oiveJ3"
-//            vc.user2Name = "test15"
-//        }
-        
-        
+        if status == "doctor" {
+            let user = users[indexPath.row]
+            vc.user2UID = user.uid
+            vc.user2Name = user.name
+        } else {
+            let doctor = doctors[indexPath.row]
+            vc.user2UID = doctor.uid
+            vc.user2Name = doctor.name
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
 }

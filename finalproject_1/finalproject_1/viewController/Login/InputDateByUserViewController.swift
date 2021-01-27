@@ -45,10 +45,14 @@ class InputDateByUserViewController: UIViewController {
     var userName: String = ""
     var userEmail: String = ""
     var userPassword: String = ""
-    var gender:String = ""
-    var needUser:String = ""
+    var gender:String = "female"
+    var needUser:String = "ติดตามรอบเดือน"
     var colorPage:UIColor = .mainColorFemale
     let db = Firestore.firestore()
+    var age: Int = 2542
+    var PeriodDay: Int = 5
+    var PeriodMonth: Int = 28
+    private var datePicker : UIDatePicker?
     
     let menuF: DropDown = {
         let menu = DropDown()
@@ -95,7 +99,10 @@ class InputDateByUserViewController: UIViewController {
         ]
         return menu1
     }()
-
+    override func viewWillAppear(_ animated: Bool) {
+        navigationBar.backgroundColor = UIColor.mainColor
+        btmSumit.backgroundColor = UIColor.mainColor
+    }
     override func viewDidLoad() {
         uiBackgriundInput.backgroundColor = UIColor.white
         uiBackgriundInput.layer.cornerRadius = 20
@@ -196,14 +203,12 @@ class InputDateByUserViewController: UIViewController {
     @IBAction func needUser(_ sender: Any) {
         if (sender as AnyObject).tag == 1{
             needUser = "ติดตามรอบเดือน"
-             print("ความต้องการ \(needUser)")
+
             btmNeedUser1.backgroundColor = colorPage
             btmNeedUser2.backgroundColor = .white
-        
         }
         if (sender as AnyObject).tag == 2{
             needUser = "พร้อมมีบุตร"
-             print("ความต้องการ \(needUser)")
             btmNeedUser1.backgroundColor = .white
             btmNeedUser2.backgroundColor = colorPage
         }
@@ -228,7 +233,7 @@ class InputDateByUserViewController: UIViewController {
     
     
     @IBAction func SaveData(_ sender: Any) {
-        
+        showLoading()
         if gender == "female" {
             utilities.setColor(check: true)
         }else {
@@ -236,19 +241,19 @@ class InputDateByUserViewController: UIViewController {
         }
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "DatePickerViewController") as! DatePickerViewController
-        vc.userName = userName
-        vc.userEmail = userEmail
-        vc.userPassword = userPassword
-        vc.gender = gender
-        vc.needUser = needUser
-        vc.colorPage = colorPage
-        vc.age = dropDownageVariable 
-        vc.PeriodDay = dropDownPeriodDayVariable
-        vc.PeriodMonth = dropDownPeriodMonthVariable
-        navigationController?.pushViewController(vc,
-        animated: true)
-        
+        createUser()
+//        let vc = storyboard.instantiateViewController(withIdentifier: "DatePickerViewController") as! DatePickerViewController
+//        vc.userName = userName
+//        vc.userEmail = userEmail
+//        vc.userPassword = userPassword
+//        vc.gender = gender
+//        vc.needUser = needUser
+//        vc.colorPage = colorPage
+//        vc.age = dropDownageVariable
+//        vc.PeriodDay = dropDownPeriodDayVariable
+//        vc.PeriodMonth = dropDownPeriodMonthVariable
+//        navigationController?.pushViewController(vc,
+//        animated: true)
 //        db.collection("users").document("0x6LZRL1zD0FsLwQJzuz").updateData([
 //           "gender": gender ,
 //            "age" :dropDownageVariable ,
@@ -262,17 +267,50 @@ class InputDateByUserViewController: UIViewController {
 //                print("Document successfully written!")
 //            }
 //        }
+        hideLoading()
 
     }
-    
-    /*
-    // MARK: - Navigation
+    func createUser() {
+       
+        Auth.auth().createUser(withEmail: userEmail, password: userPassword) { (result, err) in
+            // เช็คข้อผิดพลาด
+            if err != nil {
+                //สร้างผู้ใช้ผิดพลาด
+                print(err!.localizedDescription)
+            }else{
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+                let db = Firestore.firestore()
+                db.collection("users").document(result!.user.uid).setData([
+                    "NameUser" : self.userName,
+                    "gender" : self.gender,
+                    "needUser" : self.needUser,
+                    "age" : self.age,
+                    "PeriodDay" : self.PeriodDay,
+                    "PeriodMonth" : self.PeriodMonth,
+                    "status" : "user",
+                    "uid" : result!.user.uid]){(error) in
+                    
+                    UserDefaults.standard.set(self.userName, forKey: "userName")
+                    UserDefaults.standard.set(self.userEmail, forKey: "userEmail")
+                    UserDefaults.standard.set(self.needUser, forKey: "userNeed")
+                    UserDefaults.standard.set(self.PeriodDay, forKey: "periodDay")
+                    UserDefaults.standard.set(self.PeriodMonth, forKey: "periodMonth")
+                    UserDefaults.standard.set(self.age, forKey: "userAge")
+                    UserDefaults.standard.set("user", forKey: "status")
+                    UserDefaults.standard.set(self.gender, forKey: "userGender")
+                    
+                    if error != nil {
+                        print(error!.localizedDescription)
+                    }else {
+                        let HomeViewController = self.storyboard?.instantiateViewController(identifier: "startapp")
+                        self.view.window?.rootViewController = HomeViewController
+                        self.view.window?.makeKeyAndVisible()
+                    }
+                }
+            }
+        }
+       
     }
-    */
+   
 
 }

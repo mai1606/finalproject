@@ -11,6 +11,7 @@ import FSCalendar
 import Foundation
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 
 class CalendarPageViewController: UIViewController {
 
@@ -51,7 +52,8 @@ class CalendarPageViewController: UIViewController {
     var setPeriods : [String] = []
     var setOvulation : [String] = []
     var setDayOfEeven : [String] = []
-    
+//    var dayFromHome: String = ""
+    lazy var dayFromHome : String = UserDefaults.standard.string(forKey: "dayFromHome") ?? "aaa"
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
     //var dayChoose = Date = Date()
@@ -65,6 +67,7 @@ class CalendarPageViewController: UIViewController {
         
         setup()
         cDate()
+       
         
         
     }
@@ -73,6 +76,7 @@ class CalendarPageViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         cDate()
         calendarCollectionview.reloadData()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -125,6 +129,7 @@ class CalendarPageViewController: UIViewController {
                 self.period_TF = period_TF
                 self.lastPeriods = (period?.last)!
                 self.periodCheck = period ?? []
+                
                 self.calPeriod(firstDate: Day!, isFromClick: true)
 //                if self.dateFormat2.date(from: firstPeriod) == self.dateFormat2.date(from: formatDay){
 //                    print("=================>" ,self.period_TF = period_TF)
@@ -147,28 +152,77 @@ class CalendarPageViewController: UIViewController {
                 
                
                
-            }else {
-                self.period_TF = false
-            }
-        }
-       
+           }else {
+            self.period_TF = false
+//                print("ข้อมูลไม่ตรงกับเดือนที่หาไม่มี")
+//                self.db.collection("users").document(self.user!.uid).collection("periods").getDocuments(completion: { (data, error) in
+//                    if data == data {
+//                        var day : String = ""
+//                        for documents in data!.documents{
+//                            day = documents.data()["firstPeriods"] as! String
+//                            let Day =  self.dateFormatter.date(from: day)
+//
+//                            self.calPeriod(firstDate: Day!, isFromClick: false)
+//                        }
+//                    }else{
+//                        //                print("ข้อมูลไม่ตรงกับเดือนที่หาไม่มี")
+//                        //                self.db.collection("users").document(self.user!.uid).collection("periods").document (self.dayFromHome).getDocument{ (document, error) in
+//                        //                    if document == document {
+//                        //                        var day : String = ""
+//                        //                            day = document!.data()!["firstPeriods"] as! String
+//                        //                            let Day =  self.dateFormatter.date(from: day)
+//                        //
+//                        //                            self.calPeriod(firstDate: Day!, isFromClick: false)
+//                        //                        }
+//                        //                    else{
+//                        //                        print("ไม่มีข้อมูล")
+//                        //                    }
+//                        //
+//                        //                }
+//                        print("ไม่มีข้อมูล")
+//                    }
+//
+//                })
+//            }
+//                print("ข้อมูลไม่ตรงกับเดือนที่หาไม่มี")
+//            let db1 = self.db.collection("users").document(self.user!.uid).collection("periods").document (self.dayFromHome)
+
+            let db1 = self.db.collection("users").document(self.user!.uid).collection("periods").getDocuments{ (document, error) in
+                if let data = document {
+                    var day: String  = ""
+                    var Day = Date()
+                    for document in data.documents{
+                        day = document.data()["firstPeriods"] as! String
+                        Day =  self.dateFormatter.date(from: day)!
+                    }
+                      
+
+                    self.calPeriod(firstDate: Day, isFromClick: false)
+                    }
+                else{
+                    print("ไม่มีข้อมูล")
+                    }
+
+                }
+           }
+    }
         
+       
+        //ดึงวันที่มีข้อมูลอยู่
         db.collection("users").document(user!.uid).collection("periods").getDocuments() {
             (data, errorr) in
             if (errorr == nil) {
-               
-               // var setDay : String = ""
                 for  document in data!.documents {
                     var P = document.data()["periods"] as! [String]
                     var O = document.data()["ovulationDay"] as! [String]
                     self.setPeriods.append(contentsOf: P)
                     self.setOvulation.append(contentsOf: O)
-                   // print("aaaaaaaaaolllllollllllollsadlkokasdok>>>",setDetails)
                    
                 }
             }
 
         }
+        
         db.collection("users").document(user!.uid).collection("date").getDocuments() {
             (data, errorr) in
             if (errorr == nil) {
@@ -177,9 +231,6 @@ class CalendarPageViewController: UIViewController {
                 for  document in data!.documents {
                     var D = document.data()["Day"] as! String
                    self.setDayOfEeven.append(D)
-        
-                   // print("aaaaaaaaaolllllollllllollsadlkokasdok>>>",setDetails)
-                   
                 }
             }
 
@@ -206,13 +257,14 @@ class CalendarPageViewController: UIViewController {
                     }
                 }
                
-                db1.collection("users").document(self.user!.uid).collection("periods").document("\(dateFormatter1.string(from:self.selectedDate))").setData(["periods":self.periodsDayinYear,"ovulationDay":self.ovulationDayinYear,"periodsNextMonth":self.periodsNextMonth,"firstPeriods":self.firstperiods,"lastPeriods":self.lastPeriods,"period_TF":true])
+                db1.collection("users").document(self.user!.uid).collection("periods").document("\(dateFormatter1.string(from:self.selectedDate))").setData(["periods":self.periodsDayinYear,"ovulationDay":self.ovulationDayinYear,"periodsNextMonth":self.periodsNextMonth,"firstPeriods":self.firstperiods,"lastPeriods":self.lastPeriods,"period_TF":true,"periodMonth":dateFormatter1.string(from:self.selectedDate)])
             }
         }
         
     
         
     }
+    // ส่งค่า
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detailPageSegue" {
             let detailPageViewController = segue.destination as? DetailPageViewController
@@ -231,6 +283,8 @@ class CalendarPageViewController: UIViewController {
         calendarCollectionview.register(UINib(nibName: "DetailCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "DetailCollectionViewCell")
         calendarCollectionview.delegate = self
         calendarCollectionview.dataSource = self
+        calendar.dataSource = self
+        //calendar.allowsSelection.
         //calendar.appearance.eventColor = UIColor.greenColor
         
         secondStackView.isHidden = false
@@ -254,7 +308,6 @@ class CalendarPageViewController: UIViewController {
         }
         
         if isFromClick {
-           // dateFormatter.dateFormat = "MMM yyyy"
             if firstperiods != dateFormatter.string(for: firstDate)! {
                 firstperiods = dateFormatter.string(for: firstDate)!
             }
@@ -266,8 +319,6 @@ class CalendarPageViewController: UIViewController {
                 periodsNextMonth = dateFormatter.string(for: gregorian.date(byAdding: .day, value: 30, to: firstDate))!
                 lastPeriods = periodsDayinYear.last!
             }
-            
-           
            
         }
         periods.append(period)
@@ -280,7 +331,10 @@ class CalendarPageViewController: UIViewController {
                 calendar.reloadData()
             }
         }
-        todateSave()
+        if isFromClick {
+            todateSave()
+        }
+       
     }
     
     func getPeriod(date: Date) -> [String] {
@@ -299,11 +353,11 @@ class CalendarPageViewController: UIViewController {
             
             let  dateFormatter1 = DateFormatter()
             dateFormatter1.dateFormat = "d MMM yyyy"
-            print("xxxxxx==>1",periodsDayinYear)
+            //print("xxxxxx==>1",periodsDayinYear)
             if a == dateFormatter1.string(from: date){
                 periodsDayinYear.remove(at:index)
                 deleteDay.append(dateFormatter1.string(from: date))
-                print("xxxxxx==>2",periodsDayinYear)
+                //print("xxxxxx==>2",periodsDayinYear)
                
             }
           
@@ -330,13 +384,26 @@ extension CalendarPageViewController: FSCalendarDelegate, FSCalendarDelegateAppe
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         self.selectedDate = date
         
-        dateFormatter.string(from: selectedDate)
-        
-        let docRef = db.collection("users").document(user!.uid).collection("date").document (dateFormatter.string(from: selectedDate))
-        
-        docRef.getDocument { [self] (document, error) in
-            if let document = document, document.exists {
-                let  dataDescription = document.data()!["Detail"] as! [String]
+       // dateFormatter.string(from: selectedDate)
+        //dateFormatter.string(from: selectedDate)
+        //, document.exists
+
+//
+//     let def =  db.collection("users").document(user!.uid).collection("periods").document(dateFormatter.string(from: selectedDate))
+//
+//        def.getDocument{ [self] (document,error) in
+//            if let document = document, document.exists {
+        db.collection("users").document(user!.uid).collection("date").getDocuments{ [self] (data, errorr) in
+            if (errorr == nil){
+              var  dataDescription :[String] = []
+                for document in data!.documents{
+                        var DayInfor = document.data()["Day"] as! String
+                        if DayInfor == dateFormatter.string(from: selectedDate){
+                            dataDescription = document.data()["Detail"] as! [String]
+                        }
+                    }
+                
+//                dataDescription = document.data()!["Detail"] as! [String]
                 if  self.arrayDate.count == 0{
                     self.arrayDate = dataDescription
                    // print(self.arrayDate?.count)
@@ -394,6 +461,7 @@ extension CalendarPageViewController: FSCalendarDelegate, FSCalendarDelegateAppe
 
 
     }
+    
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         
         for d in setDayOfEeven {
@@ -405,7 +473,7 @@ extension CalendarPageViewController: FSCalendarDelegate, FSCalendarDelegateAppe
             }
             
         }
-        return 1
+        return 0
     }
   
     

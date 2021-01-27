@@ -175,7 +175,7 @@ class DetailPageViewController: UIViewController {
             waterStack.isHidden = false
             weightStack.isHidden = true
         } else if (sender as AnyObject).tag == 2{
-//            dateFormatter.dateFormat = "d MMM yyyy"
+            dateFormatter.dateFormat = "d MMM yyyy"
 //            dateFormatter.string(from: selectedDate)
 //            var x = 0
             db.collection("users").document(user!.uid).collection("date").document("\(dateFormatter.string(from: selectedDate))").setData(["Detail":  details,"Day":"\(dateFormatter.string(from: selectedDate))","weight":weight,"drinkWater":waterD])
@@ -343,6 +343,6 @@ extension DetailPageViewController: UICollectionViewDelegate, UICollectionViewDa
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 60, height: 70)
+        return CGSize(width: 70 , height: 70)
     }
 }

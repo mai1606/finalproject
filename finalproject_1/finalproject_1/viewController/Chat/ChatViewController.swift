@@ -67,7 +67,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
         
         //Fetch all the chats which has current user in it
         let db = Firestore.firestore().collection("Chats")
-                .whereField("users", arrayContains: Auth.auth().currentUser?.uid ?? "Not Found User 1")
+            .whereField("users", arrayContains: self.currentUser.uid )
         
         
         db.getDocuments { (chatQuerySnap, error) in

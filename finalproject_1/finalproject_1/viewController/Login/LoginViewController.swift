@@ -92,27 +92,34 @@ class LoginViewController: UIViewController {
                     guard user != nil else { return }
                         let uid = user!.uid
                
-                    UserDefaults.standard.set(user!.email, forKey: "userEmail")
+                UserDefaults.standard.set(user!.email, forKey: "userEmail")
                 let db = Firestore.firestore()
                 
                 let docRef = db.collection("users").document(uid)
                 
-                docRef.getDocument(source: .cache) { (document, error) in
+                docRef.getDocument() { (document, error) in
                         if let error = error {
                             print("Error getting documents: \(error)")
                         } else {
                             
                             UserDefaults.standard.set(document!.data()!["NameUser"]as! String, forKey: "userName")
                             UserDefaults.standard.set(document!.data()!["needUser"]as! String, forKey: "userNeed")
-                            UserDefaults.standard.set(document!.data()!["PeriodDay"]as! Int, forKey: "periodDay")
-                            UserDefaults.standard.set(document!.data()!["PeriodMonth"]as! Int, forKey: "periodMonth")
-                            UserDefaults.standard.set(document!.data()!["age"]as! Int, forKey: "userAge")
-                            UserDefaults.standard.set(document!.data()!["gender"]as! String, forKey: "userGender")
-
+                            UserDefaults.standard.set(document!.data()!["PeriodDay"] as! Int, forKey: "periodDay")
+                            UserDefaults.standard.set(document!.data()!["PeriodMonth"] as! Int, forKey: "periodMonth")
+                            UserDefaults.standard.set(document!.data()!["age"] as! Int, forKey: "userAge")
+                            UserDefaults.standard.set(document!.data()!["gender"] as! String, forKey: "userGender")
+                            UserDefaults.standard.set(document!.data()!["status"] as! String, forKey: "status")
+                            
+                            if UserDefaults.standard.string(forKey: "status") == "doctor" {
+                                let userMainViewController = self.storyboard?.instantiateViewController(identifier: "profilePage")
+                                self.view.window?.rootViewController = userMainViewController
                                 
+                            } else {
                                 let HomeViewController = self.storyboard?.instantiateViewController(identifier: "startapp")
                                 self.view.window?.rootViewController = HomeViewController
-                                self.view.window?.makeKeyAndVisible()
+                            }
+
+                            self.view.window?.makeKeyAndVisible()
                 
                         }
                 }

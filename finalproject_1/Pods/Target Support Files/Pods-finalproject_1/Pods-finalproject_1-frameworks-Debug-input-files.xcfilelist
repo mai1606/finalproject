@@ -2,6 +2,7 @@ ${PODS_ROOT}/Target Support Files/Pods-finalproject_1/Pods-finalproject_1-framew
 ${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework
 ${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
 ${BUILT_PRODUCTS_DIR}/ChartsRealm/ChartsRealm.framework
+${BUILT_PRODUCTS_DIR}/CollectionPickerView/CollectionPickerView.framework
 ${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework
 ${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseAuth/FirebaseAuth.framework

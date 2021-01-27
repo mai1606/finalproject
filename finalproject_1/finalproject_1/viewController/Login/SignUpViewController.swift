@@ -74,8 +74,8 @@ class SignUpViewController: UIViewController {
         boxConfirmPassword.layer.borderColor = UIColor.systemGray6.cgColor
         boxConfirmPassword.layer.borderWidth = 2
         
-//        PasswordTextField1.isSecureTextEntry = true
-//        PasswordTextField2.isSecureTextEntry = true
+        PasswordTextField1.isSecureTextEntry = true
+        PasswordTextField2.isSecureTextEntry = true
         
         SignUpbutton.layer.cornerRadius = 20
         
@@ -83,18 +83,7 @@ class SignUpViewController: UIViewController {
         cancelButton.layer.borderColor = UIColor.systemGray6.cgColor
         cancelButton.layer.borderWidth = 2
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    //ตรวจสอบข้อมูล
+ //ตรวจสอบข้อมูล
     func vailDateFields() -> String? {
         if NameUserTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
              NameUserTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
@@ -102,14 +91,24 @@ class SignUpViewController: UIViewController {
              PasswordTextField1.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
              PasswordTextField2.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             
-            let cleanedPassword = PasswordTextField1.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+//            let cleanedPassword = PasswordTextField1.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+           
+            let NameUserTextField = PasswordTextField1.text!
+            let EmailUserTextField = PasswordTextField1.text!
+            let cleanedPassword = PasswordTextField1.text!
+            let cleanedPassword2 = PasswordTextField1.text!
             
+            if NameUserTextField == "" || EmailUserTextField == "" || cleanedPassword == ""
+            || cleanedPassword2 == ""
+            {
+                return "กรุณาใส่ข้อมูลให้ครบทุกช่อง"
+            }
             if utilities.isPasswordValid(cleanedPassword) == false{
-                               
+               // showAlert(message: "กรุณาเช็ครหัสผ่านของคุณ")
                 return "กรุณาเช็ครหัสผ่านของคุณ"
             }
             if PasswordTextField1.text != PasswordTextField2.text {
-        
+                //showAlert(message: "รหัสผ่านคุณไม่เหมือนกัน")
                  return "รหัสผ่านคุณไม่เหมือนกัน"
             }
             
@@ -163,7 +162,7 @@ class SignUpViewController: UIViewController {
     }
 
     func  showError(_ message:String) {
-      errorTextField.text = message
+        errorTextField.text = message
         errorTextField.alpha = 1
     }
     @IBAction func backPage(_ sender: UIButton) {

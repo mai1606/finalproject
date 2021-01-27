@@ -8,7 +8,17 @@
 
 import Foundation
 
+struct UserChat {
+    var name: String?
+    var uid: String?
+}
+
 struct Doctor {
-    let name: String?
-    let uid: String?
+    var name: String?
+    var gender: String?
+    var nameHospital:String?
+    var nameUniversity:String?
+    var uid: String?
+    var score: Int?
+    var history: [String] = []
 }

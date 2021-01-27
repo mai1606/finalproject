@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import Foundation
 import Firebase
+import FirebaseFirestore
 
 class GraphPageThreeViewController: UIViewController {
     @IBOutlet weak var headLabel1: UILabel!
@@ -57,6 +58,7 @@ class GraphPageThreeViewController: UIViewController {
         backgroundView.layer.shadowOffset = .zero
         backgroundView.layer.shadowRadius = 20
         backgroundView.layer.shadowOpacity = 0.1
+        
         backgroundView2.layer.cornerRadius = 20
         backgroundView2.layer.shadowColor = UIColor.black.cgColor
         backgroundView2.layer.shadowOffset = .zero

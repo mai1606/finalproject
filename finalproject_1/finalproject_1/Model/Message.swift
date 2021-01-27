@@ -11,7 +11,7 @@ import Firebase
 import MessageKit
 
 struct Message {
-    
+
     var id: String
     var content: String
     var created: Timestamp
@@ -27,6 +27,16 @@ struct Message {
             "senderID": senderID,
             "senderName":senderName]
         
+    }
+    
+    struct alert {
+        static var title: String = "ข้อความจากระบบ"
+    }
+    
+    struct button {
+        static var ok: String = "ตกลง"
+        static var cancel: String = "ยกเลิก"
+        static var save: String = "บันทึก"
     }
 }
 

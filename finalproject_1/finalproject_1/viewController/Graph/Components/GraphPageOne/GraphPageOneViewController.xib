@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,10 +16,32 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GraphPageOneViewController" customModule="finalproject_1" customModuleProvider="target">
             <connections>
+                <outlet property="aprLabel" destination="Xbl-io-TRY" id="zX1-eS-7Ku"/>
+                <outlet property="aprgressView" destination="BxB-iM-uV1" id="gl0-bo-jbH"/>
+                <outlet property="augLabel" destination="J51-ty-D0U" id="0Bg-Jp-PKo"/>
+                <outlet property="augProgressView" destination="Zjt-Ge-B5a" id="ndQ-p5-dLm"/>
                 <outlet property="backgroundView" destination="yvR-7f-sQn" id="YBD-Gr-h34"/>
+                <outlet property="decLabel" destination="cfi-eO-7DR" id="MkC-X5-r5q"/>
+                <outlet property="decgressView" destination="moD-Vp-080" id="l0v-98-SQg"/>
+                <outlet property="febLabel" destination="8SU-81-lQd" id="FxH-DL-eBd"/>
                 <outlet property="febProgressView" destination="kIn-kF-AbV" id="hGZ-PW-Ivv"/>
+                <outlet property="janLabel" destination="rMB-Kw-A0A" id="0rk-Nl-63n"/>
                 <outlet property="janProgressView" destination="10c-4B-PPv" id="lxd-7p-xFn"/>
+                <outlet property="julLabel" destination="AJ7-HF-vFB" id="3EO-Ei-BPW"/>
+                <outlet property="julProgressView" destination="9ml-Rz-pfk" id="If5-kh-4AE"/>
+                <outlet property="junLabel" destination="5YS-Ie-SS6" id="70Z-OL-ZvC"/>
+                <outlet property="junProgressView" destination="lvo-Xe-6eL" id="8VM-2h-4N0"/>
+                <outlet property="marLabel" destination="rjO-Lp-4VI" id="FdG-8N-7E3"/>
+                <outlet property="marProgressView" destination="FPP-Qg-qym" id="mcN-7g-bpt"/>
+                <outlet property="mayLabel" destination="ps7-jW-HlT" id="HRY-1q-rpa"/>
+                <outlet property="mayProgressView" destination="8mx-2S-vkg" id="Nxe-Oc-2Qp"/>
+                <outlet property="novLabel" destination="4y5-rH-Wjs" id="4ea-dr-dge"/>
+                <outlet property="novProgressView" destination="QjH-0s-upg" id="Sz9-Pj-4Gq"/>
+                <outlet property="octLabel" destination="WUM-PX-n5c" id="Ohn-Qt-gPZ"/>
+                <outlet property="octProgressView" destination="PJO-lX-nMr" id="5jd-hJ-QEU"/>
                 <outlet property="periodStackView" destination="8CE-w3-R1g" id="dvO-j2-uB2"/>
+                <outlet property="sepLabel" destination="uNZ-WE-psC" id="0FY-Uo-7af"/>
+                <outlet property="sepProgressView" destination="AGI-h2-UZb" id="caN-pi-Rp7"/>
                 <outlet property="view" destination="iN0-l3-epB" id="WhQ-5i-Zey"/>
             </connections>
         </placeholder>
@@ -68,7 +91,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ความยาวของการมีประจำเดือน" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7s-kr-UDP">
                                             <rect key="frame" x="0.0" y="0.0" width="200.5" height="80"/>
                                             <fontDescription key="fontDescription" name="Kanit-Medium" family="Kanit" pointSize="16"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gbw-n9-C5B">
@@ -76,13 +99,13 @@
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30 วัน" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Tq-LX-6nG">
                                             <rect key="frame" x="244" y="0.0" width="120" height="80"/>
-                                            <color key="backgroundColor" red="0.93884878954467499" green="0.043818196032887113" blue="0.98874038460000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" name="Color_main1"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="120" id="9h1-ip-bp3"/>
                                                 <constraint firstAttribute="height" constant="80" id="Vzb-Ed-CRD"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Kanit-Medium" family="Kanit" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HV3-6i-XIq">
@@ -95,7 +118,7 @@
                                     </constraints>
                                 </stackView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemGreenColor"/>
+                            <color key="backgroundColor" name="Color_main4"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="xNn-rK-S8s" secondAttribute="trailing" id="Rmm-4I-PBd"/>
                                 <constraint firstItem="xNn-rK-S8s" firstAttribute="leading" secondItem="95S-In-hwl" secondAttribute="leading" id="Tmb-rD-0Ne"/>
@@ -120,7 +143,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="394" height="380"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="WE4-KO-YBy">
-                                                    <rect key="frame" x="0.0" y="0.0" width="394" height="756"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="394" height="1121"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lld-1R-I02">
                                                             <rect key="frame" x="0.0" y="0.0" width="394" height="20"/>
@@ -130,7 +153,7 @@
                                                             </constraints>
                                                         </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8CE-w3-R1g">
-                                                            <rect key="frame" x="0.0" y="27" width="394" height="729"/>
+                                                            <rect key="frame" x="0.0" y="27" width="394" height="1094"/>
                                                             <subviews>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMB-Kw-A0A">
                                                                     <rect key="frame" x="0.0" y="0.0" width="394" height="20.5"/>
@@ -158,71 +181,131 @@
                                                                         <constraint firstAttribute="height" constant="40" id="QbQ-LP-YYs"/>
                                                                     </constraints>
                                                                 </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjO-Lp-4VI">
+                                                                    <rect key="frame" x="0.0" y="185" width="394" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FPP-Qg-qym" customClass="MultiProgressView" customModule="MultiProgressView">
-                                                                    <rect key="frame" x="0.0" y="185" width="394" height="40"/>
+                                                                    <rect key="frame" x="0.0" y="221.5" width="394" height="40"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="40" id="rcW-iZ-tGe"/>
                                                                     </constraints>
                                                                 </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbl-io-TRY">
+                                                                    <rect key="frame" x="0.0" y="277.5" width="394" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BxB-iM-uV1" customClass="MultiProgressView" customModule="MultiProgressView">
-                                                                    <rect key="frame" x="0.0" y="241" width="394" height="40"/>
+                                                                    <rect key="frame" x="0.0" y="314" width="394" height="40"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="40" id="wOx-tV-OYI"/>
                                                                     </constraints>
                                                                 </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps7-jW-HlT">
+                                                                    <rect key="frame" x="0.0" y="370" width="394" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8mx-2S-vkg" customClass="MultiProgressView" customModule="MultiProgressView">
-                                                                    <rect key="frame" x="0.0" y="297" width="394" height="40"/>
+                                                                    <rect key="frame" x="0.0" y="406.5" width="394" height="40"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="40" id="Qmj-Da-L5A"/>
                                                                     </constraints>
                                                                 </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YS-Ie-SS6">
+                                                                    <rect key="frame" x="0.0" y="462.5" width="394" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lvo-Xe-6eL" customClass="MultiProgressView" customModule="MultiProgressView">
-                                                                    <rect key="frame" x="0.0" y="353" width="394" height="40"/>
+                                                                    <rect key="frame" x="0.0" y="499" width="394" height="40"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="40" id="dmE-UO-KRg"/>
                                                                     </constraints>
                                                                 </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJ7-HF-vFB">
+                                                                    <rect key="frame" x="0.0" y="555" width="394" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ml-Rz-pfk" customClass="MultiProgressView" customModule="MultiProgressView">
-                                                                    <rect key="frame" x="0.0" y="409" width="394" height="40"/>
+                                                                    <rect key="frame" x="0.0" y="591.5" width="394" height="40"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="40" id="0Uu-GZ-5nB"/>
                                                                     </constraints>
                                                                 </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J51-ty-D0U">
+                                                                    <rect key="frame" x="0.0" y="647.5" width="394" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zjt-Ge-B5a" customClass="MultiProgressView" customModule="MultiProgressView">
-                                                                    <rect key="frame" x="0.0" y="465" width="394" height="40"/>
+                                                                    <rect key="frame" x="0.0" y="684" width="394" height="40"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="40" id="UaL-07-zkG"/>
                                                                     </constraints>
                                                                 </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNZ-WE-psC">
+                                                                    <rect key="frame" x="0.0" y="740" width="394" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AGI-h2-UZb" customClass="MultiProgressView" customModule="MultiProgressView">
-                                                                    <rect key="frame" x="0.0" y="521" width="394" height="40"/>
+                                                                    <rect key="frame" x="0.0" y="776.5" width="394" height="40"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="40" id="Ebh-4n-RLx"/>
                                                                     </constraints>
                                                                 </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUM-PX-n5c">
+                                                                    <rect key="frame" x="0.0" y="832.5" width="394" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJO-lX-nMr" customClass="MultiProgressView" customModule="MultiProgressView">
-                                                                    <rect key="frame" x="0.0" y="577" width="394" height="40"/>
+                                                                    <rect key="frame" x="0.0" y="869" width="394" height="40"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="40" id="hXL-9m-vAU"/>
                                                                     </constraints>
                                                                 </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4y5-rH-Wjs">
+                                                                    <rect key="frame" x="0.0" y="925" width="394" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QjH-0s-upg" customClass="MultiProgressView" customModule="MultiProgressView">
-                                                                    <rect key="frame" x="0.0" y="633" width="394" height="40"/>
+                                                                    <rect key="frame" x="0.0" y="961.5" width="394" height="40"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="40" id="q39-Db-Bf9"/>
                                                                     </constraints>
                                                                 </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfi-eO-7DR">
+                                                                    <rect key="frame" x="0.0" y="1017.5" width="394" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="moD-Vp-080" customClass="MultiProgressView" customModule="MultiProgressView">
-                                                                    <rect key="frame" x="0.0" y="689" width="394" height="40"/>
+                                                                    <rect key="frame" x="0.0" y="1054" width="394" height="40"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="40" id="Aqv-ol-bJE"/>
@@ -256,6 +339,7 @@
                                     </constraints>
                                 </view>
                             </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </stackView>
                     </subviews>
                 </stackView>
@@ -273,11 +357,14 @@
         </view>
     </objects>
     <resources>
+        <namedColor name="Color_main1">
+            <color red="0.93333333333333335" green="0.49019607843137253" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Color_main4">
+            <color red="0.65490196078431373" green="0.70980392156862748" blue="0.83529411764705885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
