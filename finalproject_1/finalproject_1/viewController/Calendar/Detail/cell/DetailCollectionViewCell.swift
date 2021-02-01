@@ -18,9 +18,17 @@ class DetailCollectionViewCell: UICollectionViewCell {
        
     }
     
+    override var isSelected: Bool {
+        didSet {
+//           print("Test")
+        }
+    }
+    
+    
     func setup(detail: Detail?) {
+//        self.isSelected = detail?.isSelected ?? false
         descrLabel.text = detail?.descr
-        detailImage.image = detail?.image
+        detailImage.image = detail?.isSelected ?? false ? detail?.selectedImage : detail?.image
     }
     func setupImage(detail: Detail?) {
         detailImage.image = detail?.selectedImage

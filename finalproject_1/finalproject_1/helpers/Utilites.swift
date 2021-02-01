@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 class utilities{
 
@@ -24,7 +25,15 @@ class utilities{
         }
         
     }
-   
+    
+    class func showLoading() {
+        let activityData = ActivityData(size: nil, message: nil, messageFont: nil, messageSpacing: nil, type: .circleStrokeSpin, color: nil, padding: nil, displayTimeThreshold: 1, minimumDisplayTime: 1, backgroundColor: nil, textColor: nil)
+        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData, nil)
+    }
+        
+    class func hideLoading() {
+        NVActivityIndicatorPresenter.sharedInstance.stopAnimating(nil)
+    }
 
 }
 class DayToday{

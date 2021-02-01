@@ -16,6 +16,7 @@ target 'finalproject_1' do
 	pod 'ChartsRealm'
 	pod 'MessageKit'
 	pod 'MultiProgressView'
+  pod 'NVActivityIndicatorView', :git => 'https://github.com/ninjaprox/NVActivityIndicatorView.git', :tag => '4.8.0'
 
   # Pods for finalproject_1
 	# add the Firebase pod for Google Analytics

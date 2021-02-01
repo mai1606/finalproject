@@ -80,7 +80,7 @@ class DetailPageViewController: UIViewController {
         ]
         return menu
     }()
-    
+    var details: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,14 +104,36 @@ class DetailPageViewController: UIViewController {
         let docRef = db.collection("users").document(user!.uid).collection("date").document (dateFormatter.string(from: selectedDate))
         
         docRef.getDocument { [self] (document, error) in
-            if let document = document, document.exists {
-                let  dataDescription = document.data()!["Detail"] as! [String]
+            if let document = document, document.exists, let dataDescription = document.data()!["Detail"] as? [String] {
+                details = dataDescription
+        
+                
+                
 //                for a in dataDescription {
 //                    if Alldate.contains(where: a){
 //                        
 //                    }
 //                }
             }
+            
+            for detail in details {
+                if let index =  emotions.firstIndex(where: {$0.descr == detail}) {
+                    emotions[index].isSelected = true
+                } else if let index =  symptons.firstIndex(where: {$0.descr == detail}) {
+                    symptons[index].isSelected = true
+                } else if let index =  sexs.firstIndex(where: {$0.descr == detail}) {
+                    sexs[index].isSelected = true
+                } else if let index =  leucorrhoeas.firstIndex(where: {$0.descr == detail}) {
+                    leucorrhoeas[index].isSelected = true
+                } else if let index =  contents.firstIndex(where: {$0.descr == detail}) {
+                    contents[index].isSelected = true
+                }
+            }
+            emotionCollectionView.reloadData()
+            symptonCollectionView.reloadData()
+            sexsCollectionView.reloadData()
+            leucorrhoeaCollectionView.reloadData()
+            contentCollectionView.reloadData()
         }
     }
     @IBAction func btn(_ sender: Any){
@@ -145,18 +167,20 @@ class DetailPageViewController: UIViewController {
     }
     
     @IBAction func btnWater(_ sender: Any) {
+        showLoading()
         if (sender as AnyObject).tag == 1 {
             waterStack.isHidden = true
             weightStack.isHidden = false
-        }else if (sender as AnyObject).tag == 0{
+        } else if (sender as AnyObject).tag == 0{
             waterStack.isHidden = false
             weightStack.isHidden = true
-        }else if (sender as AnyObject).tag == 2{
+        } else if (sender as AnyObject).tag == 2{
 //            dateFormatter.dateFormat = "d MMM yyyy"
 //            dateFormatter.string(from: selectedDate)
 //            var x = 0
-            db.collection("users").document(user!.uid).collection("date").document("\(dateFormatter.string(from: selectedDate))").setData(["Detail":  selectEmotions,"Day":"\(dateFormatter.string(from: selectedDate))","weight":weight,"drinkWater":waterD])
-         
+            db.collection("users").document(user!.uid).collection("date").document("\(dateFormatter.string(from: selectedDate))").setData(["Detail":  details,"Day":"\(dateFormatter.string(from: selectedDate))","weight":weight,"drinkWater":waterD])
+            hideLoading()
+            self.navigationController?.popViewController(animated: true)
             //performSegue(withIdentifier: "CalendarPageView", sender: )
         }
         
@@ -176,12 +200,13 @@ class DetailPageViewController: UIViewController {
     
     
     func setup() {
-        
+        dateFormatter.dateFormat = "dd MMM yyyy"
         setupCollectionView(emotionCollectionView)
         setupCollectionView(symptonCollectionView)
         setupCollectionView(sexsCollectionView)
         setupCollectionView(contentCollectionView)
         setupCollectionView(leucorrhoeaCollectionView)
+        DbFirebase()
     }
     
     func setupCollectionView(_ collectionView: UICollectionView) {
@@ -275,7 +300,9 @@ extension DetailPageViewController: UICollectionViewDelegate, UICollectionViewDa
         } else {
             return
         }
-      
+        if let descr = detail?.descr , !details.contains(descr) {
+            details.append(descr)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -309,7 +336,9 @@ extension DetailPageViewController: UICollectionViewDelegate, UICollectionViewDa
         } else {
             return
         }
-      
+        if let detail = detail, let index = details.firstIndex(where: {$0 == detail.descr } ){
+            details.remove(at: index)
+        }
     }
     
     

@@ -264,7 +264,7 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="kpV-mp-u8a" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5Mo-YD-PFE"/>
-                <constraint firstAttribute="trailing" secondItem="kpV-mp-u8a" secondAttribute="trailing" id="5Ym-9y-AUL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="kpV-mp-u8a" secondAttribute="trailing" id="5Ym-9y-AUL"/>
                 <constraint firstAttribute="bottom" secondItem="kpV-mp-u8a" secondAttribute="bottom" id="AGZ-93-HgF"/>
                 <constraint firstItem="kpV-mp-u8a" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ala-rT-gfL"/>
             </constraints>

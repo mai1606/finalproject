@@ -7,30 +7,42 @@
 //
 
 import UIKit
+import Firebase
 
-class DoctorViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class DoctorViewController: UIViewController {
     
     @IBOutlet weak var chatTable: UITableView!
     
+    var doctors: [Doctor] = []
+    let db = Firestore.firestore()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    setUp()
+        setUp()
     }
     
     func setUp()  {
+        
 //        chatTable.register(DoctorTableViewCell.self, forCellReuseIdentifier: "DoctorTableViewCell")
         chatTable.dataSource = self
         chatTable.delegate = self
         chatTable.register(UINib(nibName: "DoctorTableViewCell", bundle: nil), forCellReuseIdentifier: "DoctorTableViewCell")
+        
+//        let docRef = db.collection("users").whereField("status", in: ["Doctor"]).getDocuments(completion: {
+//            (data,error) in
+//
+//        })
     }
+}
+
+extension DoctorViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "DoctorTableViewCell",for: indexPath) as? DoctorTableViewCell else { return UITableViewCell() }
-        
+//        var doctor = doctors[indexPath.row]
         if indexPath.row == 0 {
 //            cell.textLabel?.text = "test20"
             cell.configurate(name: "test20")
@@ -51,21 +63,21 @@ class DoctorViewController: UIViewController,UITableViewDelegate,UITableViewData
   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+//        var doctor = doctors[indexPath.row]
         //show chat messages
         let vc = ChatViewController()
         vc.title = "Chat"
-        if indexPath.row == 0 {
-            vc.user2UID = "g7aOSF7KUMTc116j4efExMqBFPm1"
-            vc.user2Name = "test20"
-        } else {
-            vc.user2UID = "kCmCGsyXFnMgacdyuR6wk0oiveJ3"
-            vc.user2Name = "test15"
-        }
+        vc.user2UID = doctor.uid
+        vc.user2Name = doctor.name
+//        if indexPath.row == 0 {
+//            vc.user2UID = "g7aOSF7KUMTc116j4efExMqBFPm1"
+//            vc.user2Name = "test20"
+//        } else {
+//            vc.user2UID = "kCmCGsyXFnMgacdyuR6wk0oiveJ3"
+//            vc.user2Name = "test15"
+//        }
         
         
         navigationController?.pushViewController(vc, animated: true)
     }
-
-
 }

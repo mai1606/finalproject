@@ -430,7 +430,7 @@ extension CalendarPageViewController: FSCalendarDelegate, FSCalendarDelegateAppe
            
             for  a in self.setPeriods{
                 if a == dateFormatter.string(from: date) {
-                    print("sad,psamdlpasmdpmaspdmsapmdplaspm")
+                   // print("sad,psamdlpasmdpmaspdmsapmdplaspm")
                     return UIColor(named: "Color_main1")
                 }else{
                     
