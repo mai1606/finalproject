@@ -27,6 +27,19 @@ class DoctorTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         talkButton.addTarget(self, action: #selector(talkButtonTapped), for: .touchUpInside)
+        
+        
+        
+        doctorNameLabel.font = UIFont(name: "Kanit-Light", size: UIFont.labelFontSize)
+        titalLabel.font = UIFont(name: "Kanit-Light", size: UIFont.labelFontSize)
+        nameDoctor.font = UIFont(name: "Kanit-Light", size: UIFont.labelFontSize)
+        hospitaliLabel.font = UIFont(name: "Kanit-Light", size: UIFont.labelFontSize)
+        universityLabel.font = UIFont(name: "Kanit-Light", size: UIFont.labelFontSize)
+        
+    }
+    
+    
+    override func layoutSubviews() {
         imageDoctor.layer.cornerRadius = 30
         titalBackground.layer.cornerRadius = 10
         background.layer.cornerRadius = 20
@@ -37,14 +50,11 @@ class DoctorTableViewCell: UITableViewCell {
         background.layer.shadowOpacity = 0.3
         //talkButton.layer.cornerRadius = 10
         talkButton.roundCorners(corners: [.topLeft, .bottomLeft], radius: 20)
-        reviewButton.roundCorners(corners: [.bottomRight, .topRight], radius: 50)
-        
-        
-        doctorNameLabel.font = UIFont(name: "Kanit-Light", size: UIFont.labelFontSize)
-        titalLabel.font = UIFont(name: "Kanit-Light", size: UIFont.labelFontSize)
-        nameDoctor.font = UIFont(name: "Kanit-Light", size: UIFont.labelFontSize)
-        hospitaliLabel.font = UIFont(name: "Kanit-Light", size: UIFont.labelFontSize)
-        universityLabel.font = UIFont(name: "Kanit-Light", size: UIFont.labelFontSize)
+//        reviewButton.layer.cornerRadius = 20
+        DispatchQueue.main.async {
+            self.reviewButton.roundCorners(corners: [.topRight, .bottomRight], radius: 20)
+//            reviewButton.layer.masksToBounds = true
+        }
         
     }
 

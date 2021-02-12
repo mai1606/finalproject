@@ -10,7 +10,9 @@ import UIKit
 
 class CollectionPickerViewCell: UICollectionViewCell {
     var label: UILabel!
-    var font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
+    //var font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
+    var font =  UIFont(name: "Kanit-Light", size: UIFont.systemFontSize)
+   
     var highlightedFont = UIFont.systemFont(ofSize: UIFont.systemFontSize)
     override var isSelected: Bool {
         didSet {
@@ -30,10 +32,10 @@ class CollectionPickerViewCell: UICollectionViewCell {
         self.label = UILabel(frame: self.contentView.bounds)
         self.label.backgroundColor = UIColor.clear
         self.label.textAlignment = .center
-        self.label.textColor = UIColor.gray
+        self.label.textColor = UIColor(named: "Color_main1")
         self.label.numberOfLines = 1
         self.label.lineBreakMode = .byTruncatingTail
-        self.label.highlightedTextColor = UIColor.black
+        self.label.highlightedTextColor =  UIColor(named: "Color_main2")
         self.label.font = self.font
         self.label.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleBottomMargin, .flexibleRightMargin]
         self.contentView.addSubview(self.label)

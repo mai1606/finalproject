@@ -37,18 +37,19 @@ class HomeViewController: UIViewController {
     let user = Auth.auth().currentUser
     var NextPeriodMonth = ""
     var isPeriod : [String] = []
-    var lastday = Date()
+    var lastday = Date.currentDate()
     
     var periodTodayYesNo = false // เช็คประจำเดือนมา
     var periodTodayYesNo1 = false //เช็ควันหลังมีประจำเดือน
     var ovulationDayYesNo = false // เช็ควันตกไข่
     var normal = false
+    var liveAlbums = ""
     
     var daycalculate = 0 //ตัวคำนวนวันหลัก
     var daycalculate1 = 0 //ตัวคำนวนวันรอง
     override func viewDidLoad() {
         super.viewDidLoad()
-        dateFormat.dateFormat = "EEEE, d MMM"
+        dateFormat.dateFormat = "E d MMM"
         dateFormat.calendar = Calendar(identifier: .buddhist)
         dateFormat.locale = Locale(identifier: "th_TH")
         todayLabel.text = dateFormat.string(from: toDay)
@@ -92,9 +93,10 @@ class HomeViewController: UIViewController {
         
     }
     func dbCheck(){
-        dateFormat4.dateFormat = "yyyy"
+//        dateFormat4.dateFormat = "yyyy"
+        dateFormat4.dateFormat = "YYYY"
         dateFormat3.dateFormat = "MMM"
-        dateFormat5.dateFormat = "MMM yyyy"
+        dateFormat5.dateFormat = "MMM YYYY"
         guard let user1 = user else {
             do {
                 try Auth.auth().signOut()
@@ -139,7 +141,7 @@ class HomeViewController: UIViewController {
         func dbData(day:String)  {
         dateFormat2.dateFormat = "MMM YYYY"
         dateFormat3.dateFormat = "dd MMM yyyy"
-//        dateFormat3.locale = Locale(identifier: "th_TH")
+        //dateFormat3.locale = Locale(identifier: "th_TH")
         guard let user = user else {
             do {
                 try Auth.auth().signOut()
@@ -155,16 +157,27 @@ class HomeViewController: UIViewController {
         
         docRef.getDocuments{(document, error) in
             if  document == document{
-                var  dataDescription : String = ""
-                var  isPeriodDb : [String] = []
+                var dataDescription : String = ""
+                var isPeriodDb : [String] = []
                 var firstPeriod : String = ""
                 var ovulationDay : [String] = []
+                var sex : String = ""
                 for document in document!.documents{
                     if document.data()["periodMonth"] as! String == day {
                         dataDescription = document.data()["periodsNextMonth"] as! String
                         isPeriodDb = document.data()["periods"] as! [String]
                         firstPeriod = document.data()["firstPeriods"] as! String
                         ovulationDay = document.data()["ovulationDay"] as! [String]
+                        
+                    }
+                    
+                }
+                let docRef = self.db.collection("users").document(user.uid)
+                
+                docRef.getDocument { [self] (document, error) in
+                    if let document = document, document.exists {
+                        liveAlbums = document.data()!["gender"] as! String
+                        
                     }
                 }
               
@@ -178,7 +191,9 @@ class HomeViewController: UIViewController {
                 self.dateFormat4.locale = Locale(identifier: "en_us")
                 let aDay  = self.dateFormat4.string(from: self.toDay)
                 let sDay = self.dateFormat4.date(from: firstPeriod)
+                print("AA")
                 print(self.lastday)
+                print("BB")
                 print(self.toDay)
                 print(firstPeriod)
                 print(sDay)
@@ -204,8 +219,10 @@ class HomeViewController: UIViewController {
                     self.periodTodayYesNo = false
 //                    print("lastDate",self.lastday)
 //                    print(self.daycalculate)
+
                     self.daycalculate = self.daysBetween(start: self.toDay, end: self.lastday)
-                    self.daycalculate1 = self.daysBetween(start:sDay!, end: self.toDay)
+                  //  self.daycalculate1 = self.daysBetween(start:sDay!, end: self.toDay)
+                    self.daycalculate1 = self.daysBetween(start: self.dateFormat4.date(from: firstPeriod)!, end: self.toDay)
                     //print(self.daycalculate1,"aaaaaa")
                     //  ====     เช็คหลังมีประจำเดือน
                         if self.daycalculate1 >= 7 && self.daycalculate1 <= 8{
@@ -232,7 +249,60 @@ class HomeViewController: UIViewController {
     }
     
     func setImageGraphics(days: Int)  {
-       //print(days)
+       
+        switch liveAlbums {
+        case "famale":
+        if (days == 0 || days < 0)  && periodTodayYesNo == false && periodTodayYesNo1 == false {
+            statusLabel.text = "วันคาดการประจำเดือนมา"
+            textStatusLabel.text = "คาดการวันที่"
+            if days == 1 {
+                countDownLabel.text = String(days)
+            }else{
+                countDownLabel.text = String(days*(-1)+1)
+            }
+           imageUIview.image = UIImage(named:"character206")
+           // imageUIview.image = UIImage.gi
+            //gifImageWithName("test1_10")
+                
+         
+        }else if days < 2 && days > 0 && periodTodayYesNo == false && periodTodayYesNo1 == false{
+            statusLabel.text = "ก่อนประจำเดือนมา"
+            textStatusLabel.text = "ประจำเดือนจะมาในอีก"
+            countDownLabel.text = "0"+String(days)
+            imageUIview.image = UIImage(named:"character206")
+        }else if days > 16 && days < 30  && periodTodayYesNo == false && periodTodayYesNo1 == false && ovulationDayYesNo == false {
+            statusLabel.text = "ช่วงวันไข่ตก"
+            textStatusLabel.text = "ประจำเดือนจะมาในอีก"
+            countDownLabel.text = String(days)
+            imageUIview.image = UIImage(named:"character204")
+        }
+       else if periodTodayYesNo == true {
+            statusLabel.text = "ช่วงมีประจำเดือน"
+            textStatusLabel.text = "ประจำเดือนมาวันที่"
+            countDownLabel.text = "0"+String(days+1)
+            imageUIview.image = UIImage(named:"character202")
+            
+        }
+        else if periodTodayYesNo1 == true {
+            statusLabel.text = "หลังประจำเดือนมา"
+            textStatusLabel.text = "ประจำเดือนจะมาในอีก"
+            imageUIview.image = UIImage(named:"character203")
+            countDownLabel.text = String(days)
+        }
+       
+        else if ovulationDayYesNo {
+            statusLabel.text = "วันไข่สุก"
+            textStatusLabel.text = "ประจำเดือนจะมาในอีก"
+            countDownLabel.text = String(days)
+            imageUIview.image = UIImage(named:"character205")
+            ovulationDayYesNo = false
+        }else{
+            statusLabel.text = "ปกติ"
+            textStatusLabel.text = "ประจำเดือนจะมาในอีก"
+            countDownLabel.text = String(days)
+            imageUIview.image = UIImage(named:"character201")
+        }
+        case "male":
         if (days == 0 || days < 0)  && periodTodayYesNo == false && periodTodayYesNo1 == false {
             statusLabel.text = "วันคาดการประจำเดือนมา"
             textStatusLabel.text = "คาดการวันที่"
@@ -275,8 +345,10 @@ class HomeViewController: UIViewController {
             textStatusLabel.text = "ประจำเดือนจะมาในอีก"
             countDownLabel.text = String(days)
             imageUIview.image = UIImage(named:"character201")
-        
-    }
+        }
+        default:break
+            
+        }
 }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -142,7 +142,7 @@ class GraphPageThreeViewController: UIViewController {
                                    
                                     if dd.emotion.contains(DetailsUser){
                                         self.emotion1[index].count = self.emotion1[index].count + 1
-                                        print("ฟฟฟหฟกฟหกฟหกฟกห",self.emotion1[index].count)
+                                       // print("ฟฟฟหฟกฟหกฟหกฟกห",self.emotion1[index].count)
                                     }
                                 }
                             }

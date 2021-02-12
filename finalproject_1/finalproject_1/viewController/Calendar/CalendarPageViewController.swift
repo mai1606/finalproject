@@ -26,6 +26,8 @@ class CalendarPageViewController: UIViewController {
     @IBOutlet weak var sixStackView: UIStackView!
     
     @IBOutlet weak var calendar: FSCalendar!
+    @IBOutlet weak var weightLabel: UILabel!
+    @IBOutlet weak var drinkWaterLabel: UILabel!
     
     @IBOutlet weak var calendarCollectionview: UICollectionView!
     let dateFormatter = DateFormatter()
@@ -39,7 +41,7 @@ class CalendarPageViewController: UIViewController {
     var leucorrhoeas: [Detail] = DetailPageConfigurator.getLeucorrhoea()
     var arrayDate: [String] = []
     var isPeriod: Bool = true
-    var selectedDate: Date = Date()
+    var selectedDate = Date.currentDate()
     var periods: [Period] = []
     
     var periodsDayinYear : [String] = []
@@ -52,7 +54,11 @@ class CalendarPageViewController: UIViewController {
     var setPeriods : [String] = []
     var setOvulation : [String] = []
     var setDayOfEeven : [String] = []
-//    var dayFromHome: String = ""
+    var weight: Int = 50
+    var drinkWater: Int = 0
+    
+   
+    //    var dayFromHome: String = ""
     lazy var dayFromHome : String = UserDefaults.standard.string(forKey: "dayFromHome") ?? "aaa"
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
@@ -63,18 +69,12 @@ class CalendarPageViewController: UIViewController {
     var deleteDayArray :[String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        
         setup()
-        cDate()
-       
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        cDate()
+        calculateDate()
         calendarCollectionview.reloadData()
         
     }
@@ -103,6 +103,7 @@ class CalendarPageViewController: UIViewController {
         }
        
     }
+    
     @IBAction func ChooseDay2(_ sender: Any) {
         if (sender as AnyObject).tag == 2 {
             deleteDays(date: selectedDate)
@@ -110,15 +111,14 @@ class CalendarPageViewController: UIViewController {
         calendar.reloadData()
     }
     
-    
-    func cDate() {
+   
+    func calculateDate() {
         dateFormat2.dateFormat = "MMM YYYY"
        // dateFormat3.dateFormat = "MMM YYYY"
 //        dateFormat3.locale = Locale(identifier: "th_TH")
         let docRef = db.collection("users").document(user!.uid).collection("periods").document (dateFormat2.string(from: toDay))
-        var formatDay = dateFormat2.string(from: toDay)
+      //  var formatDay = dateFormat2.string(from: toDay)
 //        let docRef = db.collection("users").document(user!.uid).collection("periods").document (toDay)
-        
         docRef.getDocument{ (document, error) in
             if let document = document, document.exists {
                 let firstPeriod = document.data()!["firstPeriods"] as! String
@@ -131,7 +131,7 @@ class CalendarPageViewController: UIViewController {
                 self.periodCheck = period ?? []
                 
                 self.calPeriod(firstDate: Day!, isFromClick: true)
-//                if self.dateFormat2.date(from: firstPeriod) == self.dateFormat2.date(from: formatDay){
+//                if self.dateFormat2.date(from: firstPeriod) == self.dateFormat2.date(from:                       formatDay){
 //                    print("=================>" ,self.period_TF = period_TF)
 //                    self.period_TF = period_TF
 //                }else{
@@ -191,13 +191,17 @@ class CalendarPageViewController: UIViewController {
                 if let data = document {
                     var day: String  = ""
                     var Day = Date()
+                    var Day2 = Date()
                     for document in data.documents{
                         day = document.data()["firstPeriods"] as! String
                         Day =  self.dateFormatter.date(from: day)!
                     }
-                      
-
-                    self.calPeriod(firstDate: Day, isFromClick: false)
+                    if self.dateFormatter.string(from: Day) == self.dateFormatter.string(from: Day2){
+                        
+                    }else{
+                        self.calPeriod(firstDate: Day, isFromClick: false)
+                    }
+                   
                     }
                 else{
                     print("ไม่มีข้อมูล")
@@ -212,12 +216,14 @@ class CalendarPageViewController: UIViewController {
         db.collection("users").document(user!.uid).collection("periods").getDocuments() {
             (data, errorr) in
             if (errorr == nil) {
+                
                 for  document in data!.documents {
                     var P = document.data()["periods"] as! [String]
                     var O = document.data()["ovulationDay"] as! [String]
+                   
                     self.setPeriods.append(contentsOf: P)
                     self.setOvulation.append(contentsOf: O)
-                   
+                  
                 }
             }
 
@@ -299,9 +305,11 @@ class CalendarPageViewController: UIViewController {
         var period: Period = Period()
         period.firstDay = dateFormatter.string(from: firstDate)
         period.periodDays = getPeriod(date: firstDate)
+        
         if let ovu = dateFormatter.string(for: gregorian.date(byAdding: .day, value: 14, to: firstDate)) {
             period.ovulationDay = ovu
         }
+        
         if let nextDay = gregorian.date(byAdding: .day, value: 30, to: firstDate) {
             period.nextDays = getPeriod(date: nextDay)
             period.fisrtPredictPeriodDay = period.nextDays.first
@@ -315,15 +323,19 @@ class CalendarPageViewController: UIViewController {
                 
             }else{
                 periodsDayinYear.append(contentsOf: getPeriod(date: firstDate))
+                
                 ovulationDayinYear.append((dateFormatter.string(for: gregorian.date(byAdding: .day, value: 14, to: firstDate)))!)
+                
                 periodsNextMonth = dateFormatter.string(for: gregorian.date(byAdding: .day, value: 30, to: firstDate))!
+                
                 lastPeriods = periodsDayinYear.last!
             }
            
         }
         periods.append(period)
         
-        if let nextpre = period.fisrtPredictPeriodDay, let nextDate = dateFormatter.date(from: nextpre) {
+        if let nextpre = period.fisrtPredictPeriodDay, let nextDate = dateFormatter.date(from: nextpre)
+        {
             let month = String(nextpre.split(separator: " ")[1])
             if month != "Dec" {
                 calPeriod(firstDate: nextDate)
@@ -344,23 +356,19 @@ class CalendarPageViewController: UIViewController {
             dates.append(dateFormatter.string(from: date))
         }
         return dates
-        
     }
+    
     func  deleteDays(date: Date){
         var deleteDay : [String] = []
         for (index , a) in periodsDayinYear.enumerated() {
-          
-            
             let  dateFormatter1 = DateFormatter()
             dateFormatter1.dateFormat = "d MMM yyyy"
             //print("xxxxxx==>1",periodsDayinYear)
             if a == dateFormatter1.string(from: date){
-                periodsDayinYear.remove(at:index)
-                deleteDay.append(dateFormatter1.string(from: date))
-                //print("xxxxxx==>2",periodsDayinYear)
-               
+            periodsDayinYear.remove(at:index)
+            deleteDay.append(dateFormatter1.string(from: date))
+            //print("xxxxxx==>2",periodsDayinYear)
             }
-          
         }
         let db1 = Firestore.firestore()
         let dateFormatter1 = DateFormatter()
@@ -378,7 +386,8 @@ class CalendarPageViewController: UIViewController {
     
 }
 
-//ดึงข้อมูล อาการมาแสดง
+//
+
 extension CalendarPageViewController: FSCalendarDelegate, FSCalendarDelegateAppearance, FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -400,9 +409,10 @@ extension CalendarPageViewController: FSCalendarDelegate, FSCalendarDelegateAppe
                         var DayInfor = document.data()["Day"] as! String
                         if DayInfor == dateFormatter.string(from: selectedDate){
                             dataDescription = document.data()["Detail"] as! [String]
+                            self.weight = document.data()["weight"] as! Int
+                            self.drinkWater = document.data()["drinkWater"] as! Int
                         }
                     }
-                
 //                dataDescription = document.data()!["Detail"] as! [String]
                 if  self.arrayDate.count == 0{
                     self.arrayDate = dataDescription
@@ -412,35 +422,26 @@ extension CalendarPageViewController: FSCalendarDelegate, FSCalendarDelegateAppe
                     self.arrayDate = dataDescription
                     //print(self.arrayDate?.count)
                 }
-               
-                
                 calendarCollectionview.reloadData()
-              
             } else {
                 print("ไม่มีข้อมูลมา ไม่พบข้อมูล")
                 self.arrayDate = []
-                
-            
                 calendarCollectionview.reloadData()
             }
             
             if !arrayDate.isEmpty {
                 emotionsSelected = []
                 for descr in arrayDate {
-
                     let emo = emotions.filter({ $0.descr == descr })
                     emotionsSelected.append(contentsOf: emo)
                 }
-                
-               
             } else {
-
                 setup()
                 emotionsSelected = []
-               
             }
             calendarCollectionview.reloadData()
         }
+        
         let  dateFormatter1 = DateFormatter()
         //dateFormatter1.string(from: date)
         dateFormatter1.dateFormat = "d MMM yyyy"
@@ -458,20 +459,15 @@ extension CalendarPageViewController: FSCalendarDelegate, FSCalendarDelegateAppe
             firstStackView2.isHidden = true
             firstStackView3.isHidden = true
         }
-
-
     }
-    
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         
         for d in setDayOfEeven {
             if d == dateFormatter.string(from: date) {
-               
                 return 1
             }else{
                 
             }
-            
         }
         return 0
     }
@@ -479,23 +475,19 @@ extension CalendarPageViewController: FSCalendarDelegate, FSCalendarDelegateAppe
     
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
-        
             return nil
         }
         
         func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
            
-           
 //            if periodsDayinYear == dateFormatter.string(from: date) {
 //                return UIColor(named: "Color_main1")
 //            }
-           
             return appearance.selectionColor
         }
         
         func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
-            
-           
+                      
             for  a in self.setPeriods{
                 if a == dateFormatter.string(from: date) {
                    // print("sad,psamdlpasmdpmaspdmsapmdplaspm")
@@ -504,11 +496,8 @@ extension CalendarPageViewController: FSCalendarDelegate, FSCalendarDelegateAppe
                     
                 }
             }
-            
-        
             for day in periodsDayinYear{
                 if day == dateFormatter.string(from: date) {
-                   
                     return UIColor(named: "Color_main1")
                 }else{
                     
@@ -536,19 +525,17 @@ extension CalendarPageViewController: FSCalendarDelegate, FSCalendarDelegateAppe
             for oday in ovulationDayinYear{
                 if oday == dateFormatter.string(from: date) {
                     return UIColor(named: "Color_main3")
-                   
                 }
             }
             return appearance.borderDefaultColor
         }
         
         func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderSelectionColorFor date: Date) -> UIColor? {
-
+            
             return appearance.borderSelectionColor
         }
         
         func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderRadiusFor date: Date) -> CGFloat {
-
             return 1.0
         }
 }
@@ -576,8 +563,8 @@ extension CalendarPageViewController: UICollectionViewDelegate, UICollectionView
         var detail: Detail?
         detail = emotionsSelected[indexPath.row]
         cell.setupImage(detail: detail)
-       
-      
+        weightLabel.text = String(weight)
+        drinkWaterLabel.text = String(drinkWater)
 //            for anarray in arrayDate!{
 //                if let descr = detail.descr {
 //
@@ -591,22 +578,15 @@ extension CalendarPageViewController: UICollectionViewDelegate, UICollectionView
 //                }
                
         //}
-        
-        
-        
       //  print(arrayDate?[indexPath.row])
       //  if detail1?.descr == arrayDate?[indexPath.row]{
     //        print(arrayDate?[indexPath.row])
     //        cell.setup(detail: detail1)
      //   }
-      
-  
-        
-        
         //cell.setup(detail: detail)
         return cell
     }
-    
+//
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 60, height: 70)
     }

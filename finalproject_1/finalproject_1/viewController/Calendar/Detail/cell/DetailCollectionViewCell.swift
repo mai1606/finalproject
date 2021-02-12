@@ -18,11 +18,11 @@ class DetailCollectionViewCell: UICollectionViewCell {
        
     }
     
-    override var isSelected: Bool {
-        didSet {
-//           print("Test")
-        }
-    }
+//    override var isSelected: Bool {
+//        didSet {
+////           print("Test")
+//        }
+   // }
     
     
     func setup(detail: Detail?) {

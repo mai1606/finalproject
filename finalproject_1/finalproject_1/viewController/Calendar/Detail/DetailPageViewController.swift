@@ -106,9 +106,6 @@ class DetailPageViewController: UIViewController {
         docRef.getDocument { [self] (document, error) in
             if let document = document, document.exists, let dataDescription = document.data()!["Detail"] as? [String] {
                 details = dataDescription
-        
-                
-                
 //                for a in dataDescription {
 //                    if Alldate.contains(where: a){
 //                        

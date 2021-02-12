@@ -32,6 +32,12 @@ class UserMainViewController: UIViewController {
     @IBOutlet weak var needUserLabel: UILabel!
     @IBOutlet weak var PeriodDayLabel: UILabel!
     @IBOutlet weak var preiodMonthLabel: UILabel!
+    
+    @IBOutlet weak var btnSaveData1: UIButton!
+    @IBOutlet weak var btnSaveData2: UIButton!
+    @IBOutlet weak var btnSaveData3: UIButton!
+    @IBOutlet weak var btnSaveData4: UIButton!
+    
     @IBOutlet weak var preiodUiPickerView: CollectionPickerView!
     @IBOutlet weak var preiodMUiPickerView: CollectionPickerView!
     let user = Auth.auth().currentUser
@@ -40,8 +46,8 @@ class UserMainViewController: UIViewController {
     var gender :String = ""
     var needUser :String = ""
     var email:String = ""
-    var PeriodDay:String = ""
-    var PeriodMonth:String = ""
+    var PeriodDay:Int = 0
+    var PeriodMonth:Int = 0
     
     var PeriodDayArray :[String] = []
     var PeriodMonthArray :[String] = []
@@ -49,28 +55,45 @@ class UserMainViewController: UIViewController {
     var numSetUp2 = 30
     var nameSync: String = ""
     var mailSync: String = ""
+    var selectIndex1 : Int = 0
+    var selectIndex2 : Int = 0
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         stackViewD.isHidden = true
         stackViewM.isHidden = true
+        btnSaveData2.backgroundColor = UIColor(named: "Color_main1")
+        btnSaveData1.layer.borderColor = UIColor.systemPink.cgColor
+        btnSaveData1.layer.borderWidth = 1
+        btnSaveData4.backgroundColor = UIColor(named: "Color_main1")
+        btnSaveData3.layer.borderColor = UIColor.systemPink.cgColor
+        //btnSaveData3.layer.borderColor =  (UIColor(named: "Color_main1") as? CGColor)
+        btnSaveData3.layer.borderWidth = 1
+        
+        btnSaveData1.layer.cornerRadius = 25
+        btnSaveData2.layer.cornerRadius = 25
+        btnSaveData3.layer.cornerRadius = 25
+        btnSaveData4.layer.cornerRadius = 25
+        
         PeriodDayArray.removeAll()
         PeriodMonthArray.removeAll()
-        for a in 1...numSetUp1 {
+        for a in (1...numSetUp1).reversed() {
             PeriodDayArray.append(String(a))
           
         }
-        for b in 1...numSetUp2 {
+        for b in (1...numSetUp2).reversed() {
             PeriodMonthArray.append(String(b))
         }
         preiodUiPickerView.delegate = self
         preiodUiPickerView.dataSource = self
+        preiodUiPickerView.collectionView.tag = 0
         preiodUiPickerView.collectionView.register(
             CollectionPickerViewCell.self,
                    forCellWithReuseIdentifier: "CollectionPickerViewCell")
         preiodMUiPickerView.delegate = self
         preiodMUiPickerView.dataSource = self
+        preiodMUiPickerView.collectionView.tag = 1
         preiodMUiPickerView.collectionView.register(
             CollectionPickerViewCell.self,
                    forCellWithReuseIdentifier: "CollectionPickerViewCell")
@@ -96,6 +119,12 @@ class UserMainViewController: UIViewController {
         imageUerProfile.clipsToBounds = true
        
     }
+    func maybeCast<T>(_ value: T, to cfType: CGColor.Type) -> CGColor? {
+      guard CFGetTypeID(value as CFTypeRef) == cfType.typeID else {
+        return nil
+      }
+      return (value as! CGColor)
+    }
     override func viewWillAppear(_ animated: Bool) {
         setopData()
        
@@ -104,17 +133,18 @@ class UserMainViewController: UIViewController {
             let docRef = db.collection("users").document(user!.uid)
             
             docRef.getDocument { [self] (document, error) in
+                showLoading()
                 if let document = document, document.exists {
                     userDataName = document.data()!["NameUser"] as! String
                     gender = document.data()!["gender"] as! String
                     needUser = document.data()!["needUser"] as! String
-                    PeriodDay = document.data()!["PeriodDay"] as? String ?? "6"
-                    PeriodMonth = document.data()!["PeriodMonth"] as? String ?? "30"
+                    PeriodDay = document.data()!["PeriodDay"] as! Int
+                    PeriodMonth = document.data()!["PeriodMonth"] as! Int
                     nameUserILabel.text = userDataName
                     emailUserLabel.text = userEmail
                     needUserLabel.text = needUser
-                    PeriodDayLabel.text = PeriodDay
-                    preiodMonthLabel.text = PeriodMonth
+                    PeriodDayLabel.text = String(PeriodDay)
+                    preiodMonthLabel.text = String(PeriodMonth)
                     
                     if(gender == "female"){
                         imageUerProfile.image = UIImage(named: "userw")
@@ -126,7 +156,9 @@ class UserMainViewController: UIViewController {
                     print("ไม่มีข้อมูลมา ไม่พบข้อมูล")
                    
                 }
+                hideLoading()
             }
+           
     }
     
     
@@ -218,7 +250,8 @@ class UserMainViewController: UIViewController {
                     UserDefaults.standard.removeObject(forKey: "userGender")
                     UserDefaults.standard.removeObject(forKey: "status")
                     UserDefaults.standard.removeObject(forKey: "dayFromHome")
-                    
+                   // UserDefaults.standard.removeObject(forKey: "weight")
+                   
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginVC")
 
@@ -259,6 +292,8 @@ class UserMainViewController: UIViewController {
         }
         if (sender as AnyObject).tag == 1 {
             //เซิฟ
+            sevePeriodDay21()
+            
             stackViewD.isHidden = true
         }
         if (sender as AnyObject).tag == 2 {
@@ -267,18 +302,43 @@ class UserMainViewController: UIViewController {
         }
         if (sender as AnyObject).tag == 3 {
             //เซิฟ
+            sevePeriodDay3()
             stackViewM.isHidden = true
         }
     }
 
-    
+    func sevePeriodDay(a:Int,number:Int){
+        selectIndex1 = number
+        if(a == 1){
+            selectIndex1 = number
+        }
+        if a == 2{
+            selectIndex2 = number
+        }
+        
+    }
+    func sevePeriodDay21()  {
+        db.collection("users").document(user!.uid).updateData(["PeriodDay":selectIndex1])
+        setopData()
+    }
+    func sevePeriodDay3()  {
+       
+        db.collection("users").document(user!.uid).updateData(["PeriodMonth":selectIndex2])
+        setopData()
+    }
     
 }
 
 extension UserMainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return PeriodDayArray.count
+        if collectionView.tag == 0 {
+            return PeriodDayArray.count
+          //  return PeriodMonthArray.count
+        }
+        if collectionView.tag == 1 {
+            return PeriodMonthArray.count
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -293,7 +353,7 @@ extension UserMainViewController: UICollectionViewDelegate, UICollectionViewData
 //           
 //        }
 //        if collectionView == preiodMUiPickerView as? UICollectionView{
-//            cell.label.text = PeriodDayArray[indexPath.row]
+//            cell.label.text = PeriodMonthArray[indexPath.row]
 //        }
 //        if collectionView == preiodUiPickerView as? UICollectionView{
 //            
@@ -311,7 +371,16 @@ extension UserMainViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        selectIndex = indexPath.row
-        print("xxxxxx",indexPath.row)
+        if collectionView.tag == 0 {
+            var  selectIndex = 0
+            selectIndex = Int(PeriodDayArray[indexPath.row]) ?? Int(PeriodDayArray[0]) as! Int
+            sevePeriodDay(a: 1, number: selectIndex)
+        }
+        if collectionView.tag == 1 {
+            var  selectIndex = 0
+            selectIndex = Int(PeriodMonthArray[indexPath.row]) ?? Int(PeriodMonthArray[0]) as! Int
+            sevePeriodDay(a: 2, number: selectIndex)
+        }
     }
     
     
