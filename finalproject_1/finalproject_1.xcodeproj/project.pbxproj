@@ -22,11 +22,6 @@
 		2C25513D25AB326E00C11A69 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C25513C25AB326E00C11A69 /* Period.swift */; };
 		2C4E7A1425402FBE0009C87D /* InputDateByUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E7A1325402FBE0009C87D /* InputDateByUserViewController.swift */; };
 		2C4E7A1625403F2B0009C87D /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E7A1525403F2B0009C87D /* DatePickerViewController.swift */; };
-		2C531B5325DA46650028599C /* DiseaseIntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C531B5225DA46650028599C /* DiseaseIntroductionViewController.swift */; };
-		2C531B5625DA46BA0028599C /* DiseaseIntroduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C531B5525DA46BA0028599C /* DiseaseIntroduction.storyboard */; };
-		2C531C1025DA83B90028599C /* DiseaseIntrodction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C531C0F25DA83B90028599C /* DiseaseIntrodction.swift */; };
-		2C531C3B25DA9E670028599C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C531C3A25DA9E660028599C /* SceneDelegate.swift */; };
-		2C531C4025DAA0BA0028599C /* DiseaseImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C531C3F25DAA0BA0028599C /* DiseaseImageViewController.swift */; };
 		2C55DB4725433189002437DF /* UserMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55DB4625433189002437DF /* UserMainViewController.swift */; };
 		2C630B7225B45C5B006986F2 /* DoctorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C630B7025B45C5B006986F2 /* DoctorTableViewCell.swift */; };
 		2C630B7325B45C5B006986F2 /* DoctorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C630B7125B45C5B006986F2 /* DoctorTableViewCell.xib */; };
@@ -85,11 +80,6 @@
 		2C25513C25AB326E00C11A69 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		2C4E7A1325402FBE0009C87D /* InputDateByUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDateByUserViewController.swift; sourceTree = "<group>"; };
 		2C4E7A1525403F2B0009C87D /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
-		2C531B5225DA46650028599C /* DiseaseIntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiseaseIntroductionViewController.swift; sourceTree = "<group>"; };
-		2C531B5525DA46BA0028599C /* DiseaseIntroduction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DiseaseIntroduction.storyboard; sourceTree = "<group>"; };
-		2C531C0F25DA83B90028599C /* DiseaseIntrodction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiseaseIntrodction.swift; sourceTree = "<group>"; };
-		2C531C3A25DA9E660028599C /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2C531C3F25DAA0BA0028599C /* DiseaseImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiseaseImageViewController.swift; sourceTree = "<group>"; };
 		2C55DB4625433189002437DF /* UserMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMainViewController.swift; sourceTree = "<group>"; };
 		2C630B7025B45C5B006986F2 /* DoctorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorTableViewCell.swift; sourceTree = "<group>"; };
 		2C630B7125B45C5B006986F2 /* DoctorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DoctorTableViewCell.xib; sourceTree = "<group>"; };
@@ -180,7 +170,6 @@
 		2C062CAC253EBEFD00BA3515 /* viewController */ = {
 			isa = PBXGroup;
 			children = (
-				2C531B5025DA45D40028599C /* DiseaseIntroduction */,
 				2CA2A75125C9801E00E25679 /* User */,
 				2C8A24F4258B5B0800046F18 /* Chat */,
 				2C674FB425824F4300F6E4ED /* Home */,
@@ -200,24 +189,6 @@
 				2C062CB6253F0A4000BA3515 /* Constants.swift */,
 			);
 			path = helpers;
-			sourceTree = "<group>";
-		};
-		2C531B5025DA45D40028599C /* DiseaseIntroduction */ = {
-			isa = PBXGroup;
-			children = (
-				2C531C3E25DAA0980028599C /* DiseaseImage */,
-				2C531B5225DA46650028599C /* DiseaseIntroductionViewController.swift */,
-				2C531B5525DA46BA0028599C /* DiseaseIntroduction.storyboard */,
-			);
-			path = DiseaseIntroduction;
-			sourceTree = "<group>";
-		};
-		2C531C3E25DAA0980028599C /* DiseaseImage */ = {
-			isa = PBXGroup;
-			children = (
-				2C531C3F25DAA0BA0028599C /* DiseaseImageViewController.swift */,
-			);
-			path = DiseaseImage;
 			sourceTree = "<group>";
 		};
 		2C630B6F25B45C38006986F2 /* cell */ = {
@@ -312,7 +283,6 @@
 				2CBFD1D925B46C48005013F6 /* Disease.swift */,
 				2C8DA98F25B6F2370066B651 /* Emotion.swift */,
 				2C64627125C8080F00E0C58B /* Doctor.swift */,
-				2C531C0F25DA83B90028599C /* DiseaseIntrodction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -470,7 +440,6 @@
 				2C8A24F6258B5B3300046F18 /* chatDoctorStoryboard.storyboard in Resources */,
 				2C674FBF2583B1F000F6E4ED /* StackedBar.xib in Resources */,
 				C62E5BF22587D10D00BC2135 /* GraphPageTwoViewController.xib in Resources */,
-				2C531B5625DA46BA0028599C /* DiseaseIntroduction.storyboard in Resources */,
 				2C66C46225B592BD0003840E /* Kanit-Medium.ttf in Resources */,
 				C62E5C022587D67300BC2135 /* GraphPageThreeViewController.xib in Resources */,
 				2C6860052576471000142B63 /* Kanit-Light.ttf in Resources */,
@@ -538,13 +507,10 @@
 				2C8DA99025B6F2370066B651 /* Emotion.swift in Sources */,
 				2C8A24F9258B5DEE00046F18 /* DoctorViewController.swift in Sources */,
 				2C68600C2576688600142B63 /* DetailPageViewController.swift in Sources */,
-				2C531B5325DA46650028599C /* DiseaseIntroductionViewController.swift in Sources */,
-				2C531C4025DAA0BA0028599C /* DiseaseImageViewController.swift in Sources */,
 				C62E5BEE2587D10100BC2135 /* GraphPageTwoViewController.swift in Sources */,
 				2C062CAE253EE59A00BA3515 /* Utilites.swift in Sources */,
 				2C062C97253EB25D00BA3515 /* ViewController.swift in Sources */,
 				2C8A2504258B93B600046F18 /* Message.swift in Sources */,
-				2C531C1025DA83B90028599C /* DiseaseIntrodction.swift in Sources */,
 				2C062C93253EB25D00BA3515 /* AppDelegate.swift in Sources */,
 				2C6860232576767D00142B63 /* DetailPageConfigurator.swift in Sources */,
 				2C64627225C8080F00E0C58B /* Doctor.swift in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zmT-dM-Awi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="G0m-Yi-vej">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -456,9 +456,6 @@
                                                                 <state key="normal" title="คำแนะนำเกี่ยวกับโรค">
                                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
-                                                                <connections>
-                                                                    <segue destination="pIN-Om-JDO" kind="show" id="bby-L8-Omq"/>
-                                                                </connections>
                                                             </button>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DgE-gM-gzT">
                                                                 <rect key="frame" x="0.0" y="662" width="374" height="2"/>
@@ -695,16 +692,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8HW-Vu-pLp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7628" y="2167"/>
-        </scene>
-        <!--DiseaseIntroduction-->
-        <scene sceneID="8fV-gX-h2N">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="DiseaseIntroduction" storyboardName="DiseaseIntroduction" id="pIN-Om-JDO" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="PVT-yL-l0g"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7DO-93-XRP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="8489" y="2175"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="TD4-Bj-YXu">
@@ -1848,7 +1835,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ptN-8b-q8w">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i7e-ge-6ds">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -2208,7 +2195,7 @@
             <objects>
                 <viewController storyboardIdentifier="LoginVC" id="dkM-NA-Csj" customClass="LoginViewController" customModule="finalproject_1" customModuleProvider="target" colorLabel="IBBuiltInLabel-Gray" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8b0-Yj-KDe">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5av-C6-uGI">
@@ -2219,10 +2206,10 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GDU-a4-4V4">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="la4-X3-hQz">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Plt-kN-0JB">
                                                 <rect key="frame" x="20" y="520" width="374" height="46"/>
@@ -2499,7 +2486,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="zHY-cI-bP5"/>
+        <segue reference="lAs-li-TvY"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Frame 36" width="416" height="20"/>
