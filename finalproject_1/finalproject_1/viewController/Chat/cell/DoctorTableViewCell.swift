@@ -21,6 +21,7 @@ class DoctorTableViewCell: UITableViewCell {
     @IBOutlet weak var buttonLike: UIButton!
     @IBOutlet weak var hospitaliLabel: UILabel!    
     @IBOutlet weak var universityLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var titalBackground: UIView!
     var didClickDoctorButton: (() -> Void)?
@@ -66,6 +67,11 @@ class DoctorTableViewCell: UITableViewCell {
     
     func configurate(_ doctor: Doctor) {
         doctorNameLabel.text = doctor.name
+        hospitaliLabel.text = doctor.nameHospital
+        universityLabel.text = doctor.nameUniversity
+        scoreLabel.text = String(doctor.score ?? 0)
+        imageDoctor.image = UIImage(named: doctor.imageDactor ?? "")
+        
     }
     
     @objc func talkButtonTapped() {

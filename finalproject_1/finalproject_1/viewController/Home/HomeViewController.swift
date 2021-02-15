@@ -90,9 +90,10 @@ class HomeViewController: UIViewController {
        // viewWillAppear(true)
 //        daycalculate = daysBetween(start: toDay, end: self.lastday)
 //        print("2=============>",daycalculate,"ค่าที่เอาไปใช่",lastday)
-        
+        dbCheck()
     }
     func dbCheck(){
+        showLoading()
 //        dateFormat4.dateFormat = "yyyy"
         dateFormat4.dateFormat = "YYYY"
         dateFormat3.dateFormat = "MMM"
@@ -134,11 +135,13 @@ class HomeViewController: UIViewController {
             }
 //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
 //            let vc = storyboard.instantiateViewController(withIdentifier: "CalendarPageView") as! CalendarPageViewController
+            self.hideLoading()
             UserDefaults.standard.set(Days, forKey: "dayFromHome")
             
     }
 }
         func dbData(day:String)  {
+        
         dateFormat2.dateFormat = "MMM YYYY"
         dateFormat3.dateFormat = "dd MMM yyyy"
         //dateFormat3.locale = Locale(identifier: "th_TH")
@@ -239,6 +242,7 @@ class HomeViewController: UIViewController {
             
             }
         }
+       
         setImageGraphics(days: daycalculate)
     }
     

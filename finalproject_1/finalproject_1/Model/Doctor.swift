@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct UserChat {
     var name: String?
@@ -20,5 +21,6 @@ struct Doctor {
     var nameUniversity:String?
     var uid: String?
     var score: Int?
+    var imageDactor: String?
     var history: [String] = []
 }

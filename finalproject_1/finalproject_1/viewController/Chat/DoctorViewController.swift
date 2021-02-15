@@ -73,10 +73,24 @@ class DoctorViewController: UIViewController {
                     self.doctors.removeAll()
                     for document in data!.documents {
                         let name = document.data()["nameDoctor"] as? String
+                        let gender = document.data()["gender"] as? String
+                        let nameHospital = document.data()["nameHospital"] as? String
+                        let nameUniversity = document.data()["nameUniversity"] as? String
+                        let history = document.data()["history"] as? [String]
+                        let score = document.data()["score"] as? Int
                         let uid = document.data()["uid"] as? String
+                        var image = ""
+                        if name == "นพ.แสนภูมิพ่าย ขาวประเสริฐ" {
+                            image = "Doctor_2"
+                        }
+                        if name == "พญ.จิรภัทร สุริยะชัยสวัสดิ์" {
+                            image = "Doctor_1"
+                        }
+                        if name == "นพ.นพ ขาวประเสริฐ" {
+                            image = "Doctor_3"
+                        }
                         
-                        
-                        self.doctors.append(Doctor(name: name, gender: "", nameHospital: "", nameUniversity: "", uid: uid, score: 0, history: []))
+                        self.doctors.append(Doctor(name: name, gender: gender, nameHospital: nameHospital, nameUniversity: nameUniversity, uid: uid, score: Int(score ?? 0), imageDactor:image, history: history ?? []))
                         
     //                    doctor.name = document.data()["nameDoctor"] as! String
     //                    doctor.name = document.data()["nameDoctor"] as! String
