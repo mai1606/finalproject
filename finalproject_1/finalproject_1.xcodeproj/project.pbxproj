@@ -19,13 +19,19 @@
 		2C062CAE253EE59A00BA3515 /* Utilites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C062CAD253EE59A00BA3515 /* Utilites.swift */; };
 		2C062CB4253EF74100BA3515 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C062CB3253EF74100BA3515 /* GoogleService-Info.plist */; };
 		2C062CB7253F0A4000BA3515 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C062CB6253F0A4000BA3515 /* Constants.swift */; };
+		2C1A990125F395F800B30D31 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1A990025F395F800B30D31 /* UIViewController.swift */; };
 		2C25513D25AB326E00C11A69 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C25513C25AB326E00C11A69 /* Period.swift */; };
 		2C4E7A1425402FBE0009C87D /* InputDateByUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E7A1325402FBE0009C87D /* InputDateByUserViewController.swift */; };
 		2C4E7A1625403F2B0009C87D /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E7A1525403F2B0009C87D /* DatePickerViewController.swift */; };
+		2C531CC025DAB32A0028599C /* DiseaseIntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C531CBE25DAB32A0028599C /* DiseaseIntroductionViewController.swift */; };
+		2C531CC125DAB32A0028599C /* DiseaseIntroduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C531CBF25DAB32A0028599C /* DiseaseIntroduction.storyboard */; };
+		2C531CC525DAB3420028599C /* DiseaseImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C531CC425DAB3420028599C /* DiseaseImageViewController.swift */; };
+		2C531D3125DAB93F0028599C /* DiseaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C531D3025DAB93F0028599C /* DiseaseViewController.swift */; };
 		2C55DB4725433189002437DF /* UserMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55DB4625433189002437DF /* UserMainViewController.swift */; };
+		2C5B3F7A25E4F37B004E4BF2 /* DetailColletion.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C5B3F7925E4F37B004E4BF2 /* DetailColletion.xib */; };
+		2C5B3F8125E4F456004E4BF2 /* DetailColletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5B3F8025E4F456004E4BF2 /* DetailColletion.swift */; };
 		2C630B7225B45C5B006986F2 /* DoctorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C630B7025B45C5B006986F2 /* DoctorTableViewCell.swift */; };
 		2C630B7325B45C5B006986F2 /* DoctorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C630B7125B45C5B006986F2 /* DoctorTableViewCell.xib */; };
-		2C64626F25BD62A800E0C58B /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C64626E25BD62A800E0C58B /* UIViewController.swift */; };
 		2C64627225C8080F00E0C58B /* Doctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C64627125C8080F00E0C58B /* Doctor.swift */; };
 		2C66C46225B592BD0003840E /* Kanit-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C6860032576471000142B63 /* Kanit-Medium.ttf */; };
 		2C66C46425B592C30003840E /* Kanit-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C6860012576471000142B63 /* Kanit-Bold.ttf */; };
@@ -77,13 +83,13 @@
 		2C062CAD253EE59A00BA3515 /* Utilites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilites.swift; sourceTree = "<group>"; };
 		2C062CB3253EF74100BA3515 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2C062CB6253F0A4000BA3515 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2C1A990025F395F800B30D31 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		2C25513C25AB326E00C11A69 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		2C4E7A1325402FBE0009C87D /* InputDateByUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDateByUserViewController.swift; sourceTree = "<group>"; };
 		2C4E7A1525403F2B0009C87D /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		2C55DB4625433189002437DF /* UserMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMainViewController.swift; sourceTree = "<group>"; };
 		2C630B7025B45C5B006986F2 /* DoctorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorTableViewCell.swift; sourceTree = "<group>"; };
 		2C630B7125B45C5B006986F2 /* DoctorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DoctorTableViewCell.xib; sourceTree = "<group>"; };
-		2C64626E25BD62A800E0C58B /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = ../../../../../../Downloads/UIViewController.swift; sourceTree = "<group>"; };
 		2C64627125C8080F00E0C58B /* Doctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doctor.swift; sourceTree = "<group>"; };
 		2C674FB62583AD2E00F6E4ED /* GraphPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphPageViewController.swift; sourceTree = "<group>"; };
 		2C674FBA2583AF3200F6E4ED /* StackedBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedBar.swift; sourceTree = "<group>"; };
@@ -203,7 +209,7 @@
 		2C64626D25BD628100E0C58B /* extension */ = {
 			isa = PBXGroup;
 			children = (
-				2C64626E25BD62A800E0C58B /* UIViewController.swift */,
+				2C1A990025F395F800B30D31 /* UIViewController.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -517,9 +523,9 @@
 				2C062CA7253EBDBE00BA3515 /* SignUpViewController.swift in Sources */,
 				2C062CA9253EBDE000BA3515 /* LoginViewController.swift in Sources */,
 				2C062C95253EB25D00BA3515 /* SceneDelegate.swift in Sources */,
-				2C64626F25BD62A800E0C58B /* UIViewController.swift in Sources */,
 				2C68601A25766EAB00142B63 /* DetailCollectionViewCell.swift in Sources */,
 				2C8A2501258B937E00046F18 /* Chat.swift in Sources */,
+				2C1A990125F395F800B30D31 /* UIViewController.swift in Sources */,
 				2CBFD1DA25B46C48005013F6 /* Disease.swift in Sources */,
 				2C4E7A1625403F2B0009C87D /* DatePickerViewController.swift in Sources */,
 				2C55DB4725433189002437DF /* UserMainViewController.swift in Sources */,
